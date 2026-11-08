@@ -1,0 +1,2198 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080d18">
+
+<title>Finance Edge | Smarter Financial Decisions</title>
+<meta name="description" content="Finance Edge: Finansal okuryazarlık, yatırım eğitimi, piyasa analizleri, fon karşılaştırmaları ve finansal hesaplayıcılar.">
+<meta name="keywords" content="finance, investment education, ETF, savings, compound interest, financial calculators, markets">
+<meta name="robots" content="index,follow">
+
+<style>
+:root {
+    --bg: #080d18;
+    --bg2: #0d1422;
+    --panel: #111b2c;
+    --panel2: #152238;
+    --line: rgba(255,255,255,.09);
+    --text: #edf3ff;
+    --muted: #96a5bb;
+    --gold: #e9bd68;
+    --gold2: #f5d99b;
+    --green: #42d6a4;
+    --red: #ff7185;
+    --blue: #69a8ff;
+    --radius: 18px;
+    --shadow: 0 20px 55px rgba(0,0,0,.25);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    margin: 0;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: var(--text);
+    background:
+        radial-gradient(circle at 80% 0%, rgba(65,105,165,.13), transparent 30%),
+        radial-gradient(circle at 5% 35%, rgba(233,189,104,.06), transparent 28%),
+        var(--bg);
+    line-height: 1.6;
+}
+
+button, input, select, textarea { font: inherit; }
+
+button, a { -webkit-tap-highlight-color: transparent; }
+
+a { color: inherit; text-decoration: none; }
+
+button { cursor: pointer; }
+
+.container {
+    width: min(1180px, calc(100% - 40px));
+    margin: auto;
+}
+
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(8,13,24,.88);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--line);
+}
+
+.nav {
+    height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    font-size: 21px;
+    font-weight: 850;
+    letter-spacing: -.7px;
+    white-space: nowrap;
+}
+
+.brand-mark {
+    width: 39px;
+    height: 39px;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    color: #101827;
+    font-size: 21px;
+    background: linear-gradient(135deg, #f5d99b, #c78e3d);
+    box-shadow: 0 5px 20px rgba(233,189,104,.2);
+}
+
+.brand span { color: var(--gold); }
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+    color: #b9c5d7;
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.nav-links a:hover { color: var(--gold); }
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+select, .select {
+    color: var(--text);
+    background: #121e30;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 9px 11px;
+    outline: none;
+}
+
+select option { background: #101a2a; }
+
+.menu-btn {
+    display: none;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    color: white;
+    border-radius: 10px;
+    width: 42px;
+    height: 42px;
+}
+
+.hero {
+    padding: 78px 0 58px;
+    overflow: hidden;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr .95fr;
+    gap: 58px;
+    align-items: center;
+}
+
+.eyebrow {
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 850;
+    letter-spacing: 2.1px;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.eyebrow:before {
+    content: "";
+    display: inline-block;
+    width: 22px;
+    height: 1px;
+    background: var(--gold);
+}
+
+h1 {
+    font-size: clamp(42px, 5.4vw, 70px);
+    line-height: 1.04;
+    letter-spacing: -3px;
+    margin: 22px 0;
+    max-width: 700px;
+}
+
+.gold-text {
+    background: linear-gradient(100deg, #f6d99b, #dca64e);
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+.hero-copy {
+    max-width: 590px;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.9;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 13px;
+    margin-top: 30px;
+}
+
+.btn {
+    border: 1px solid transparent;
+    border-radius: 11px;
+    padding: 13px 19px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;
+    font-weight: 750;
+    font-size: 13px;
+    transition: .2s;
+}
+
+.btn-primary {
+    color: #111827;
+    background: linear-gradient(135deg, #f5d99b, #d7a34f);
+    box-shadow: 0 8px 25px rgba(220,166,78,.16);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(220,166,78,.25);
+}
+
+.btn-secondary {
+    border-color: var(--line);
+    color: var(--text);
+    background: rgba(255,255,255,.035);
+}
+
+.btn-secondary:hover { border-color: var(--gold); }
+
+.hero-note {
+    margin-top: 25px;
+    color: #71829a;
+    font-size: 11px;
+}
+
+.dashboard {
+    background: linear-gradient(145deg, rgba(24,38,60,.97), rgba(13,21,35,.98));
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 23px;
+    box-shadow: var(--shadow);
+    padding: 23px;
+    position: relative;
+}
+
+.dashboard:before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: 23px;
+    background: linear-gradient(135deg, rgba(233,189,104,.23), transparent 40%);
+    pointer-events: none;
+}
+
+.dash-head, .dash-row, .section-heading, .market-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.dash-label {
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.dash-value {
+    font-size: 30px;
+    letter-spacing: -1px;
+    font-weight: 850;
+    margin-top: 5px;
+}
+
+.live-dot {
+    width: 7px;
+    height: 7px;
+    display: inline-block;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 12px var(--green);
+    margin-right: 6px;
+}
+
+.status {
+    color: var(--green);
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.chart-wrap {
+    height: 175px;
+    margin: 16px 0;
+    position: relative;
+}
+
+canvas { width: 100%; height: 100%; }
+
+.chart-labels {
+    display: flex;
+    justify-content: space-between;
+    color: #71829a;
+    font-size: 10px;
+}
+
+.dash-stats {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 10px;
+    margin-top: 19px;
+}
+
+.dash-stat {
+    background: rgba(255,255,255,.035);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 12px;
+}
+
+.dash-stat span {
+    display: block;
+    color: var(--muted);
+    font-size: 10px;
+}
+
+.dash-stat strong {
+    display: block;
+    margin-top: 4px;
+    font-size: 15px;
+}
+
+.positive { color: var(--green) !important; }
+.negative { color: var(--red) !important; }
+
+.section {
+    padding: 73px 0;
+    border-top: 1px solid rgba(255,255,255,.045);
+}
+
+.section-heading {
+    align-items: end;
+    margin-bottom: 28px;
+}
+
+.section-heading h2 {
+    font-size: clamp(27px,3vw,36px);
+    letter-spacing: -1.2px;
+    margin: 9px 0 0;
+    line-height: 1.2;
+}
+
+.section-heading p {
+    max-width: 470px;
+    margin: 0;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.market-grid {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 14px;
+}
+
+.market-card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 15px;
+    padding: 18px;
+    transition: .2s;
+}
+
+.market-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(233,189,104,.35);
+}
+
+.market-name {
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.market-symbol {
+    color: var(--muted);
+    font-size: 10px;
+}
+
+.market-price {
+    font-size: 22px;
+    font-weight: 850;
+    margin: 17px 0 4px;
+    letter-spacing: -.5px;
+}
+
+.market-change {
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.demo-warning {
+    margin-top: 17px;
+    color: #8696ac;
+    font-size: 11px;
+    padding: 12px 15px;
+    border-left: 2px solid var(--gold);
+    background: rgba(233,189,104,.045);
+    border-radius: 0 8px 8px 0;
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 17px;
+}
+
+.info-card {
+    border: 1px solid var(--line);
+    background: linear-gradient(145deg, var(--panel), #0d1625);
+    border-radius: var(--radius);
+    padding: 23px;
+    transition: .2s;
+}
+
+.info-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(233,189,104,.3);
+}
+
+.card-icon {
+    width: 45px;
+    height: 45px;
+    display: grid;
+    place-items: center;
+    border-radius: 13px;
+    background: rgba(233,189,104,.1);
+    color: var(--gold);
+    font-size: 21px;
+    margin-bottom: 18px;
+}
+
+.info-card h3 {
+    font-size: 17px;
+    margin: 0 0 9px;
+}
+
+.info-card p {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.8;
+    margin: 0 0 17px;
+}
+
+.text-link {
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--panel);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 650px;
+}
+
+th, td {
+    text-align: left;
+    padding: 17px 19px;
+    border-bottom: 1px solid var(--line);
+    font-size: 12px;
+}
+
+th {
+    color: #9eacc0;
+    background: rgba(255,255,255,.025);
+    text-transform: uppercase;
+    letter-spacing: .7px;
+    font-size: 10px;
+}
+
+td { color: #d8e2f0; }
+tr:last-child td { border-bottom: 0; }
+
+.tag {
+    display: inline-flex;
+    padding: 5px 8px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 800;
+    background: rgba(105,168,255,.12);
+    color: var(--blue);
+}
+
+.tag.gold {
+    color: var(--gold);
+    background: rgba(233,189,104,.12);
+}
+
+.tag.green {
+    color: var(--green);
+    background: rgba(66,214,164,.1);
+}
+
+.calculator-layout {
+    display: grid;
+    grid-template-columns: .8fr 1.2fr;
+    gap: 20px;
+    align-items: stretch;
+}
+
+.calc-tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.calc-tab {
+    border: 1px solid var(--line);
+    color: var(--muted);
+    background: var(--panel);
+    padding: 16px;
+    border-radius: 12px;
+    text-align: left;
+    font-weight: 750;
+    font-size: 13px;
+}
+
+.calc-tab.active {
+    border-color: rgba(233,189,104,.55);
+    background: rgba(233,189,104,.09);
+    color: var(--gold);
+}
+
+.calc-panel {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 17px;
+    padding: 24px;
+}
+
+.calc-panel h3 { margin: 0 0 6px; }
+
+.calc-intro {
+    color: var(--muted);
+    font-size: 12px;
+    margin: 0 0 23px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 15px;
+}
+
+.field label {
+    color: #aab8ca;
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 7px;
+}
+
+.field input, .field select, .field textarea {
+    width: 100%;
+    padding: 12px;
+    color: white;
+    background: #0a1321;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    outline: none;
+}
+
+.field input:focus, .field select:focus {
+    border-color: var(--gold);
+}
+
+.calc-result {
+    margin-top: 20px;
+    padding: 18px;
+    border: 1px solid rgba(233,189,104,.24);
+    border-radius: 13px;
+    background: rgba(233,189,104,.055);
+}
+
+.result-label {
+    font-size: 11px;
+    color: var(--muted);
+}
+
+.result-value {
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--gold);
+    margin-top: 3px;
+    overflow-wrap: anywhere;
+}
+
+.result-detail {
+    color: #aebbd0;
+    font-size: 11px;
+    margin-top: 7px;
+}
+
+.article-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 17px;
+}
+
+.article {
+    overflow: hidden;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 15px;
+    transition: .2s;
+}
+
+.article:hover { transform: translateY(-3px); }
+
+.article-visual {
+    height: 150px;
+    display: grid;
+    place-items: center;
+    font-size: 48px;
+    background:
+        radial-gradient(circle at 70% 20%, rgba(233,189,104,.22), transparent 35%),
+        linear-gradient(135deg, #192c46, #101a2b);
+}
+
+.article-content { padding: 19px; }
+
+.article-meta {
+    font-size: 10px;
+    color: var(--gold);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+}
+
+.article h3 {
+    font-size: 16px;
+    line-height: 1.4;
+    margin: 10px 0;
+}
+
+.article p {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.8;
+    margin: 0 0 15px;
+}
+
+.newsletter {
+    border: 1px solid rgba(233,189,104,.2);
+    border-radius: 19px;
+    padding: 35px;
+    background:
+        radial-gradient(circle at 90% 20%, rgba(233,189,104,.12), transparent 35%),
+        #111b2c;
+    display: grid;
+    grid-template-columns: 1fr .8fr;
+    gap: 25px;
+    align-items: center;
+}
+
+.newsletter h2 {
+    font-size: 28px;
+    margin: 0 0 9px;
+    letter-spacing: -1px;
+}
+
+.newsletter p {
+    color: var(--muted);
+    font-size: 13px;
+    margin: 0;
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 8px;
+}
+
+.newsletter-form input {
+    flex: 1;
+    min-width: 0;
+    background: #091321;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 13px;
+    color: white;
+}
+
+.form-message {
+    margin-top: 9px;
+    font-size: 11px;
+    color: var(--green);
+}
+
+.faq-list {
+    display: grid;
+    gap: 10px;
+}
+
+details {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px 18px;
+}
+
+summary {
+    font-size: 13px;
+    font-weight: 750;
+    cursor: pointer;
+}
+
+details p {
+    margin: 12px 0 0;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+footer {
+    border-top: 1px solid var(--line);
+    padding: 45px 0 25px;
+    background: #070b13;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 30px;
+}
+
+.footer-brand p {
+    color: var(--muted);
+    max-width: 290px;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.footer-col h4 {
+    color: var(--gold);
+    font-size: 12px;
+    margin: 0 0 13px;
+}
+
+.footer-col a, .footer-col button {
+    display: block;
+    color: #9eacc0;
+    background: none;
+    border: 0;
+    padding: 4px 0;
+    font-size: 11px;
+    text-align: left;
+}
+
+.footer-col a:hover, .footer-col button:hover { color: white; }
+
+.footer-bottom {
+    border-top: 1px solid var(--line);
+    margin-top: 35px;
+    padding-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 12px;
+    color: #71829a;
+    font-size: 10px;
+}
+
+.disclaimer {
+    margin-top: 22px;
+    color: #77879d;
+    font-size: 10px;
+    line-height: 1.8;
+    max-width: 900px;
+}
+
+.cookie-banner {
+    position: fixed;
+    z-index: 300;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    max-width: 900px;
+    margin: auto;
+    padding: 17px 20px;
+    background: #17243a;
+    border: 1px solid rgba(233,189,104,.3);
+    box-shadow: 0 12px 40px rgba(0,0,0,.5);
+    border-radius: 14px;
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.cookie-banner p {
+    margin: 0;
+    color: #c3cee0;
+    font-size: 11px;
+}
+
+.cookie-actions {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.small-btn {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 9px 12px;
+    color: white;
+    background: transparent;
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.small-btn.accept {
+    background: var(--gold);
+    color: #111827;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.75);
+    z-index: 500;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-box {
+    max-width: 700px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    background: #101b2c;
+    border: 1px solid var(--line);
+    border-radius: 17px;
+    padding: 25px;
+}
+
+.modal-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.modal-head h2 { margin: 0; }
+
+.close-modal {
+    border: 1px solid var(--line);
+    color: white;
+    background: transparent;
+    border-radius: 8px;
+    width: 35px;
+    height: 35px;
+}
+
+.modal-body {
+    color: #aebbd0;
+    font-size: 12px;
+    line-height: 1.9;
+    white-space: pre-line;
+}
+
+.back-top {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 42px;
+    height: 42px;
+    display: none;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: var(--gold);
+    color: #101827;
+    font-size: 18px;
+    z-index: 50;
+}
+
+@media(max-width:950px) {
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 76px;
+        left: 0;
+        right: 0;
+        padding: 18px 22px;
+        background: #0d1727;
+        border-bottom: 1px solid var(--line);
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .nav-links.open { display: flex; }
+    .menu-btn { display: block; }
+    .hero-grid { grid-template-columns: 1fr; gap: 35px; }
+    .hero { padding-top: 55px; }
+    .market-grid { grid-template-columns: repeat(2,1fr); }
+    .cards-grid, .article-grid { grid-template-columns: repeat(2,1fr); }
+    .footer-grid { grid-template-columns: repeat(2,1fr); }
+}
+
+@media(max-width:650px) {
+    .container { width: min(100% - 28px,1180px); }
+    .nav { height: 66px; gap: 8px; }
+    .brand { font-size: 17px; }
+    .brand-mark { width: 34px; height: 34px; }
+    .nav-links { top: 66px; }
+    .nav-actions { gap: 5px; }
+    .nav-actions select { max-width: 95px; padding: 8px 5px; font-size: 10px; }
+    .hero { padding: 48px 0 35px; }
+    h1 { font-size: 43px; letter-spacing: -2px; }
+    .hero-copy { font-size: 14px; }
+    .dashboard { padding: 16px; }
+    .dash-stats { gap: 6px; }
+    .dash-stat { padding: 9px; }
+    .dash-stat strong { font-size: 12px; }
+    .section { padding: 53px 0; }
+    .section-heading { display: block; }
+    .section-heading p { margin-top: 12px; }
+    .market-grid { gap: 9px; }
+    .market-card { padding: 13px; }
+    .market-price { font-size: 18px; }
+    .cards-grid, .article-grid { grid-template-columns: 1fr; }
+    .calculator-layout { grid-template-columns: 1fr; }
+    .calc-tabs { display: grid; grid-template-columns: repeat(3,1fr); }
+    .calc-tab { padding: 10px 6px; font-size: 10px; text-align: center; }
+    .calc-panel { padding: 17px; }
+    .form-grid { grid-template-columns: 1fr; }
+    .newsletter { grid-template-columns: 1fr; padding: 23px; }
+    .newsletter-form { flex-direction: column; }
+    .footer-grid { grid-template-columns: repeat(2,1fr); gap: 22px; }
+    .cookie-banner { left: 10px; right: 10px; bottom: 10px; flex-direction: column; align-items: stretch; }
+    .cookie-actions { justify-content: flex-end; }
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+    <div class="container nav">
+        <a class="brand" href="#home">
+            <span class="brand-mark">↗</span>
+            FINANCE <span>EDGE</span>
+        </a>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="#markets" data-i18n="navMarkets">Piyasalar</a>
+            <a href="#learn" data-i18n="navLearn">Eğitim</a>
+            <a href="#compare" data-i18n="navCompare">Karşılaştır</a>
+            <a href="#calculators" data-i18n="navCalculators">Hesaplayıcılar</a>
+            <a href="#insights" data-i18n="navInsights">Analizler</a>
+        </nav>
+
+        <div class="nav-actions">
+            <select id="languageSelect" aria-label="Language">
+                <option value="tr">TR</option>
+                <option value="en">EN</option>
+                <option value="de">DE</option>
+                <option value="ru">RU</option>
+                <option value="zh">中文</option>
+            </select>
+            <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+        </div>
+    </div>
+</header>
+
+<main>
+
+<section class="hero" id="home">
+    <div class="container hero-grid">
+        <div>
+            <div class="eyebrow" data-i18n="heroEyebrow">FINANCIAL KNOWLEDGE. BETTER DECISIONS.</div>
+            <h1 data-i18n="heroTitle">Your future deserves a <span class="gold-text">smarter</span> financial edge.</h1>
+            <p class="hero-copy" data-i18n="heroText">
+                Learn how markets work, compare financial products and make more informed decisions with clear educational tools.
+            </p>
+            <div class="hero-actions">
+                <a href="#calculators" class="btn btn-primary" data-i18n="heroButton1">Explore Calculators ↗</a>
+                <a href="#learn" class="btn btn-secondary" data-i18n="heroButton2">Start Learning</a>
+            </div>
+            <div class="hero-note" data-i18n="heroNote">
+                Independent financial education · Türkiye · Europe · Global markets
+            </div>
+        </div>
+
+        <div class="dashboard">
+            <div class="dash-head">
+                <div>
+                    <div class="dash-label" data-i18n="portfolioDemo">ILLUSTRATIVE MARKET OVERVIEW</div>
+                    <div class="dash-value">Finance Edge</div>
+                </div>
+                <span class="status"><i class="live-dot"></i><span data-i18n="demoData">DEMO DATA</span></span>
+            </div>
+
+            <div class="chart-wrap">
+                <canvas id="heroChart"></canvas>
+            </div>
+            <div class="chart-labels">
+                <span>JAN</span><span>MAR</span><span>MAY</span><span>JUL</span><span>SEP</span><span>DEC</span>
+            </div>
+
+            <div class="dash-stats">
+                <div class="dash-stat">
+                    <span data-i18n="statOne">Learning tools</span>
+                    <strong>12+</strong>
+                </div>
+                <div class="dash-stat">
+                    <span data-i18n="statTwo">Markets covered</span>
+                    <strong>Global</strong>
+                </div>
+                <div class="dash-stat">
+                    <span data-i18n="statThree">Languages</span>
+                    <strong>05</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="markets">
+    <div class="container">
+        <div class="section-heading">
+            <div>
+                <div class="eyebrow" data-i18n="marketEyebrow">MARKET SNAPSHOT</div>
+                <h2 data-i18n="marketTitle">Explore global markets</h2>
+            </div>
+            <p data-i18n="marketIntro">Understand the major market categories and the factors that can influence them.</p>
+        </div>
+
+        <div class="market-grid">
+            <div class="market-card">
+                <div class="market-top">
+                    <div><div class="market-name">S&P 500</div><div class="market-symbol">US EQUITIES</div></div>
+                    <span class="tag green">INDEX</span>
+                </div>
+                <div class="market-price">5,842.10</div>
+                <div class="market-change positive">+0.84% <span data-i18n="illustrative">Illustrative</span></div>
+            </div>
+
+            <div class="market-card">
+                <div class="market-top">
+                    <div><div class="market-name">NASDAQ 100</div><div class="market-symbol">US TECHNOLOGY</div></div>
+                    <span class="tag">INDEX</span>
+                </div>
+                <div class="market-price">20,315.40</div>
+                <div class="market-change positive">+1.12% <span data-i18n="illustrative">Illustrative</span></div>
+            </div>
+
+            <div class="market-card">
+                <div class="market-top">
+                    <div><div class="market-name">BIST 100</div><div class="market-symbol">TÜRKİYE</div></div>
+                    <span class="tag gold">INDEX</span>
+                </div>
+                <div class="market-price">10,245.80</div>
+                <div class="market-change negative">−0.32% <span data-i18n="illustrative">Illustrative</span></div>
+            </div>
+
+            <div class="market-card">
+                <div class="market-top">
+                    <div><div class="market-name">EURO STOXX 50</div><div class="market-symbol">EUROPE</div></div>
+                    <span class="tag">INDEX</span>
+                </div>
+                <div class="market-price">5,210.65</div>
+                <div class="market-change positive">+0.46% <span data-i18n="illustrative">Illustrative</span></div>
+            </div>
+        </div>
+
+        <div class="demo-warning" data-i18n="marketWarning">
+            Important: The figures above are illustrative demonstration values, not live market prices. Connect a licensed market-data provider before publishing real-time quotes.
+        </div>
+    </div>
+</section>
+
+<section class="section" id="learn">
+    <div class="container">
+        <div class="section-heading">
+            <div>
+                <div class="eyebrow" data-i18n="learnEyebrow">KNOWLEDGE CENTER</div>
+                <h2 data-i18n="learnTitle">Build your financial knowledge</h2>
+            </div>
+            <p data-i18n="learnIntro">Clear explanations to help you understand financial concepts before making decisions.</p>
+        </div>
+
+        <div class="cards-grid">
+            <article class="info-card">
+                <div class="card-icon">◈</div>
+                <h3 data-i18n="learnCard1Title">Investment fundamentals</h3>
+                <p data-i18n="learnCard1Text">Understand risk, return, diversification, time horizon and the basics of long-term investing.</p>
+                <a class="text-link" href="#insights" data-i18n="readGuide">Read learning guides →</a>
+            </article>
+
+            <article class="info-card">
+                <div class="card-icon">▤</div>
+                <h3 data-i18n="learnCard2Title">ETFs and funds</h3>
+                <p data-i18n="learnCard2Text">Explore fund structures, expense ratios, asset allocation and tracking differences.</p>
+                <a class="text-link" href="#compare" data-i18n="exploreFunds">Explore comparison →</a>
+            </article>
+
+            <article class="info-card">
+                <div class="card-icon">⌁</div>
+                <h3 data-i18n="learnCard3Title">Personal finance</h3>
+                <p data-i18n="learnCard3Text">Learn about savings, budgeting, borrowing costs, inflation and emergency funds.</p>
+                <a class="text-link" href="#calculators" data-i18n="useCalculators">Use calculators →</a>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="compare">
+    <div class="container">
+        <div class="section-heading">
+            <div>
+                <div class="eyebrow" data-i18n="compareEyebrow">SMART COMPARISON</div>
+                <h2 data-i18n="compareTitle">Compare before you choose</h2>
+            </div>
+            <p data-i18n="compareIntro">Use these criteria to evaluate financial products. Availability and terms vary by country and provider.</p>
+        </div>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th data-i18n="tableProduct">Product category</th>
+                        <th data-i18n="tableCosts">Costs to check</th>
+                        <th data-i18n="tableRisk">Main considerations</th>
+                        <th data-i18n="tableRegion">Availability</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong data-i18n="row1name">Cashback cards</strong></td>
+                        <td data-i18n="row1cost">Annual fee, interest, FX fee</td>
+                        <td data-i18n="row1risk">Spending conditions, reward caps</td>
+                        <td><span class="tag green" data-i18n="varies">Varies by country</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong data-i18n="row2name">Travel reward cards</strong></td>
+                        <td data-i18n="row2cost">Annual fee, FX fee, redemption costs</td>
+                        <td data-i18n="row2risk">Miles expiry, travel benefits, exclusions</td>
+                        <td><span class="tag green" data-i18n="varies">Varies by country</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong data-i18n="row3name">Index ETFs</strong></td>
+                        <td data-i18n="row3cost">Expense ratio, trading fees, spreads</td>
+                        <td data-i18n="row3risk">Index exposure, currency, volatility</td>
+                        <td><span class="tag gold" data-i18n="jurisdiction">Jurisdiction-dependent</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong data-i18n="row4name">Savings accounts</strong></td>
+                        <td data-i18n="row4cost">Account fees, withdrawal conditions</td>
+                        <td data-i18n="row4risk">Deposit protection, variable rates</td>
+                        <td><span class="tag green" data-i18n="varies">Varies by country</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="demo-warning" data-i18n="compareWarning">
+            This is an educational comparison framework, not a list of specific bank or investment offers. Verify product terms directly with regulated providers.
+        </div>
+    </div>
+</section>
+
+<section class="section" id="calculators">
+    <div class="container">
+        <div class="section-heading">
+            <div>
+                <div class="eyebrow" data-i18n="calcEyebrow">FINANCIAL TOOLS</div>
+                <h2 data-i18n="calcTitle">Make the numbers clearer</h2>
+            </div>
+            <p data-i18n="calcIntro">Try interactive calculators to explore hypothetical savings, borrowing and inflation scenarios.</p>
+        </div>
+
+        <div class="calculator-layout">
+            <div class="calc-tabs">
+                <button class="calc-tab active" data-calc="compound" data-i18n="tabCompound">Compound growth</button>
+                <button class="calc-tab" data-calc="loan" data-i18n="tabLoan">Loan calculator</button>
+                <button class="calc-tab" data-calc="inflation" data-i18n="tabInflation">Inflation impact</button>
+            </div>
+
+            <div class="calc-panel">
+                <div id="compoundPanel">
+                    <h3 data-i18n="compoundTitle">Compound growth calculator</h3>
+                    <p class="calc-intro" data-i18n="compoundIntro">Estimate how an initial amount and regular contributions could grow under an assumed annual return.</p>
+                    <div class="form-grid">
+                        <div class="field">
+                            <label data-i18n="initialAmount">Initial amount</label>
+                            <input type="number" id="initial" value="10000" min="0">
+                        </div>
+                        <div class="field">
+                            <label data-i18n="monthlyDeposit">Monthly contribution</label>
+                            <input type="number" id="monthly" value="300" min="0">
+                        </div>
+                        <div class="field">
+                            <label data-i18n="annualReturn">Assumed annual return (%)</label>
+                            <input type="number" id="rate" value="6" step="0.1" min="-99" max="100">
+                        </div>
+                        <div class="field">
+                            <label data-i18n="years">Years</label>
+                            <input type="number" id="years" value="10" min="1" max="100">
+                        </div>
+                    </div>
+                    <div class="calc-result">
+                        <div class="result-label" data-i18n="estimatedValue">Illustrative future value</div>
+                        <div class="result-value" id="compoundResult">—</div>
+                        <div class="result-detail" id="compoundDetail"></div>
+                    </div>
+                </div>
+
+                <div id="loanPanel" hidden>
+                    <h3 data-i18n="loanTitle">Loan repayment calculator</h3>
+                    <p class="calc-intro" data-i18n="loanIntro">Estimate monthly repayments using a simplified fixed-rate loan formula.</p>
+                    <div class="form-grid">
+                        <div class="field">
+                            <label data-i18n="loanAmount">Loan amount</label>
+                            <input type="number" id="loanAmount" value="100000" min="0">
+                        </div>
+                        <div class="field">
+                            <label data-i18n="loanRate">Annual interest (%)</label>
+                            <input type="number" id="loanRate" value="20" step="0.1" min="0" max="500">
+                        </div>
+                        <div class="field">
+                            <label data-i18n="loanYears">Term (years)</label>
+                            <input type="number" id="loanYears" value="5" min="1" max="50">
+                        </div>
+                        <div class="field">
+                            <label data-i18n="extraFees">Additional fees</label>
+                            <input type="number" id="loanFees" value="0" min="0">
+                        </div>
+                    </div>
+                    <div class="calc-result">
+                        <div class="result-label" data-i18n="monthlyPayment">Estimated monthly payment</div>
+                        <div class="result-value" id="loanResult">—</div>
+                        <div class="result-detail" id="loanDetail"></div>
+                    </div>
+                </div>
+
+                <div id="inflationPanel" hidden>
+                    <h3 data-i18n="inflationTitle">Inflation impact calculator</h3>
+                    <p class="calc-intro" data-i18n="inflationIntro">Explore how an assumed inflation rate may affect purchasing power over time.</p>
+                    <div class="form-grid">
+                        <div class="field">
+                            <label data-i18n="currentAmount">Amount today</label>
+                            <input type="number" id="inflationAmount" value="10000" min="0">
+                        </div>
+                        <div class="field">
+                            <label data-i18n="inflationRate">Annual inflation (%)</label>
+                            <input type="number" id="inflationRate" value="3" step="0.1" min="0" max="100">
+                        </div>
+                        <div class="field">
+                            <label data-i18n="inflationYears">Number of years</label>
+                            <input type="number" id="inflationYears" value="10" min="1" max="100">
+                        </div>
+                    </div>
+                    <div class="calc-result">
+                        <div class="result-label" data-i18n="futureCost">Equivalent future cost</div>
+                        <div class="result-value" id="inflationResult">—</div>
+                        <div class="result-detail" id="inflationDetail"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-warning" data-i18n="calcWarning">
+            Calculator outputs are estimates for education only. They exclude taxes, fees, changing rates and other real-world factors unless specifically entered. Investment returns are not guaranteed.
+        </div>
+    </div>
+</section>
+
+<section class="section" id="insights">
+    <div class="container">
+        <div class="section-heading">
+            <div>
+                <div class="eyebrow" data-i18n="insightEyebrow">EDITORIAL & INSIGHTS</div>
+                <h2 data-i18n="insightTitle">Ideas worth understanding</h2>
+            </div>
+            <p data-i18n="insightIntro">Explore foundational topics and build a stronger framework for financial decisions.</p>
+        </div>
+
+        <div class="article-grid">
+            <article class="article">
+                <div class="article-visual">📈</div>
+                <div class="article-content">
+                    <div class="article-meta" data-i18n="articleTag1">INVESTING BASICS</div>
+                    <h3 data-i18n="articleTitle1">Why diversification matters</h3>
+                    <p data-i18n="articleText1">Learn how spreading exposure across different assets can help manage concentration risk.</p>
+                    <a href="#article1" class="text-link" data-article="article1" data-i18n="readArticle">Read article →</a>
+                </div>
+            </article>
+
+            <article class="article">
+                <div class="article-visual">🏦</div>
+                <div class="article-content">
+                    <div class="article-meta" data-i18n="articleTag2">PERSONAL FINANCE</div>
+                    <h3 data-i18n="articleTitle2">Building an emergency fund</h3>
+                    <p data-i18n="articleText2">Understand liquidity, unexpected expenses and a practical approach to savings.</p>
+                    <a href="#article2" class="text-link" data-article="article2" data-i18n="readArticle">Read article →</a>
+                </div>
+            </article>
+
+            <article class="article">
+                <div class="article-visual">🌍</div>
+                <div class="article-content">
+                    <div class="article-meta" data-i18n="articleTag3">GLOBAL MARKETS</div>
+                    <h3 data-i18n="articleTitle3">Understanding currency risk</h3>
+                    <p data-i18n="articleText3">See how exchange-rate movements can affect international investments and purchases.</p>
+                    <a href="#article3" class="text-link" data-article="article3" data-i18n="readArticle">Read article →</a>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="newsletter">
+            <div>
+                <div class="eyebrow" data-i18n="newsletterEyebrow">FINANCE EDGE LETTER</div>
+                <h2 data-i18n="newsletterTitle">A clearer view of finance.</h2>
+                <p data-i18n="newsletterText">Get educational insights, financial concepts and new tools delivered to your inbox.</p>
+            </div>
+            <div>
+                <form class="newsletter-form" id="newsletterForm">
+                    <input type="email" id="newsletterEmail" placeholder="Email address" required>
+                    <button class="btn btn-primary" type="submit" data-i18n="subscribe">Subscribe</button>
+                </form>
+                <div class="form-message" id="newsletterMessage"></div>
+                <p style="font-size:10px;margin-top:9px" data-i18n="newsletterConsent">By subscribing, you agree to the newsletter terms and privacy notice. You can unsubscribe at any time.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="faq">
+    <div class="container">
+        <div class="section-heading">
+            <div>
+                <div class="eyebrow" data-i18n="faqEyebrow">HELP CENTER</div>
+                <h2 data-i18n="faqTitle">Frequently asked questions</h2>
+            </div>
+        </div>
+
+        <div class="faq-list">
+            <details>
+                <summary data-i18n="faqQ1">Is Finance Edge a financial advisory service?</summary>
+                <p data-i18n="faqA1">No. Finance Edge is designed as a financial education and information website. It does not provide personalized investment, tax or legal advice.</p>
+            </details>
+            <details>
+                <summary data-i18n="faqQ2">Are the market numbers live?</summary>
+                <p data-i18n="faqA2">No. The market figures currently shown are illustrative demo values. A licensed market-data provider must be connected for live data.</p>
+            </details>
+            <details>
+                <summary data-i18n="faqQ3">Does Finance Edge recommend specific investments?</summary>
+                <p data-i18n="faqA3">No. Educational content is intended to explain concepts and comparison criteria, not to recommend a specific investment or financial product.</p>
+            </details>
+            <details>
+                <summary data-i18n="faqQ4">How does the website earn revenue?</summary>
+                <p data-i18n="faqA4">Potential revenue channels include advertising, clearly disclosed affiliate partnerships and sponsorships. Availability depends on approval, local laws and provider terms.</p>
+            </details>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a class="brand" href="#home">
+                    <span class="brand-mark">↗</span>
+                    FINANCE <span>EDGE</span>
+                </a>
+                <p data-i18n="footerAbout">Independent financial education for a more informed world. Understand the numbers before making decisions.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4 data-i18n="footerExplore">EXPLORE</h4>
+                <a href="#markets" data-i18n="navMarkets">Markets</a>
+                <a href="#learn" data-i18n="navLearn">Education</a>
+                <a href="#compare" data-i18n="navCompare">Compare</a>
+                <a href="#calculators" data-i18n="navCalculators">Calculators</a>
+            </div>
+
+            <div class="footer-col">
+                <h4 data-i18n="footerLegal">LEGAL</h4>
+                <button onclick="openLegal('privacy')" data-i18n="privacy">Privacy policy</button>
+                <button onclick="openLegal('terms')" data-i18n="terms">Terms of use</button>
+                <button onclick="openLegal('affiliate')" data-i18n="affiliate">Affiliate disclosure</button>
+                <button onclick="openLegal('risk')" data-i18n="risk">Risk disclosure</button>
+                <button onclick="openLegal('cookies')" data-i18n="cookies">Cookie policy</button>
+            </div>
+
+            <div class="footer-col">
+                <h4 data-i18n="footerContact">CONTACT</h4>
+                <a href="mailto:hello@yourdomain.com">hello@yourdomain.com</a>
+                <a href="#faq" data-i18n="helpCenter">Help center</a>
+                <button onclick="openLegal('about')" data-i18n="aboutUs">About us</button>
+            </div>
+        </div>
+
+        <div class="disclaimer" data-i18n="footerDisclaimer">
+            Finance Edge provides general educational information only. Nothing on this website constitutes investment, financial, legal or tax advice, an offer, or a solicitation. Financial products can involve risk, including loss of capital. Always conduct your own research and consult a qualified professional where appropriate.
+        </div>
+
+        <div class="footer-bottom">
+            <span>© <span id="year"></span> Finance Edge. <span data-i18n="rights">All rights reserved.</span></span>
+            <span data-i18n="footerTagline">Knowledge is your financial edge.</span>
+        </div>
+    </div>
+</footer>
+
+<div class="cookie-banner" id="cookieBanner">
+    <p data-i18n="cookieText">This website uses essential cookies and, with your permission, optional cookies to improve the experience and measure performance.</p>
+    <div class="cookie-actions">
+        <button class="small-btn" id="cookieReject" data-i18n="cookieReject">Reject optional</button>
+        <button class="small-btn accept" id="cookieAccept" data-i18n="cookieAccept">Accept all</button>
+    </div>
+</div>
+
+<div class="modal" id="legalModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+        <div class="modal-head">
+            <h2 id="modalTitle">Information</h2>
+            <button class="close-modal" onclick="closeLegal()" aria-label="Close">✕</button>
+        </div>
+        <div class="modal-body" id="modalBody"></div>
+    </div>
+</div>
+
+<button class="back-top" id="backTop" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+/* =========================================================
+   FINANCE EDGE
+   Single-file front-end demonstration.
+   Replace demo content and connect real services before launch.
+========================================================= */
+
+const translations = {
+tr: {
+    navMarkets:"Piyasalar", navLearn:"Eğitim", navCompare:"Karşılaştır",
+    navCalculators:"Hesaplayıcılar", navInsights:"Analizler",
+    heroEyebrow:"FİNANSAL BİLGİ. DAHA İYİ KARARLAR.",
+    heroTitle:'Geleceğiniz daha <span class="gold-text">akıllı</span> finansal kararları hak ediyor.',
+    heroText:"Piyasaların nasıl çalıştığını öğrenin, finansal ürünleri karşılaştırın ve anlaşılır eğitim araçlarıyla daha bilinçli kararlar alın.",
+    heroButton1:"Hesaplayıcıları Keşfet ↗", heroButton2:"Eğitime Başla",
+    heroNote:"Bağımsız finans eğitimi · Türkiye · Avrupa · Küresel piyasalar",
+    portfolioDemo:"ÖRNEK PİYASA GÖRÜNÜMÜ", demoData:"ÖRNEK VERİ",
+    statOne:"Eğitim araçları",statTwo:"Kapsanan piyasalar",statThree:"Dil",
+    marketEyebrow:"PİYASA GÖRÜNÜMÜ",marketTitle:"Küresel piyasaları keşfedin",
+    marketIntro:"Başlıca piyasa kategorilerini ve onları etkileyebilecek faktörleri anlayın.",
+    illustrative:"Örnek",marketWarning:"Önemli: Yukarıdaki rakamlar örnek gösterim değerleridir, canlı piyasa fiyatları değildir. Gerçek zamanlı verileri yayınlamadan önce lisanslı bir piyasa verisi sağlayıcısı bağlayın.",
+    learnEyebrow:"BİLGİ MERKEZİ",learnTitle:"Finansal bilginizi geliştirin",
+    learnIntro:"Finansal kararlar vermeden önce kavramları anlamanıza yardımcı olacak açık ve anlaşılır açıklamalar.",
+    learnCard1Title:"Yatırımın temelleri",learnCard1Text:"Risk, getiri, çeşitlendirme, zaman ufku ve uzun vadeli yatırımın temellerini öğrenin.",
+    learnCard2Title:"ETF ve fonlar",learnCard2Text:"Fon yapısını, yönetim giderlerini, varlık dağılımını ve endeks takibini keşfedin.",
+    learnCard3Title:"Kişisel finans",learnCard3Text:"Tasarruf, bütçe, borçlanma maliyetleri, enflasyon ve acil durum fonlarını öğrenin.",
+    readGuide:"Eğitim rehberlerini oku →",exploreFunds:"Karşılaştırmayı keşfet →",useCalculators:"Hesaplayıcıları kullan →",
+    compareEyebrow:"AKILLI KARŞILAŞTIRMA",compareTitle:"Seçmeden önce karşılaştırın",
+    compareIntro:"Finansal ürünleri değerlendirmek için bu kriterleri kullanın. Ürünlerin bulunabilirliği ve koşulları ülkeye ve sağlayıcıya göre değişir.",
+    tableProduct:"Ürün kategorisi",tableCosts:"Kontrol edilecek maliyetler",tableRisk:"Temel değerlendirmeler",tableRegion:"Bulunabilirlik",
+    row1name:"Nakit iade kartları",row1cost:"Yıllık ücret, faiz, döviz ücreti",row1risk:"Harcama koşulları, ödül limitleri",
+    row2name:"Seyahat ödül kartları",row2cost:"Yıllık ücret, döviz ücreti, kullanım maliyetleri",row2risk:"Mil süresi, seyahat avantajları, istisnalar",
+    row3name:"Endeks ETF'leri",row3cost:"Fon gideri, işlem ücreti, alış-satış farkı",row3risk:"Endeks kapsamı, para birimi, oynaklık",
+    row4name:"Tasarruf hesapları",row4cost:"Hesap ücretleri, para çekme koşulları",row4risk:"Mevduat koruması, değişken faiz",
+    varies:"Ülkeye göre değişir",jurisdiction:"Ülke mevzuatına bağlı",
+    compareWarning:"Bu tablo eğitim amaçlı bir karşılaştırma çerçevesidir; belirli banka veya yatırım ürünü teklifleri içermez. Ürün koşullarını doğrudan yetkili sağlayıcılardan doğrulayın.",
+    calcEyebrow:"FİNANSAL ARAÇLAR",calcTitle:"Rakamları daha anlaşılır hale getirin",
+    calcIntro:"Varsayımsal birikim, borçlanma ve enflasyon senaryolarını incelemek için etkileşimli hesaplayıcıları deneyin.",
+    tabCompound:"Bileşik büyüme",tabLoan:"Kredi hesaplama",tabInflation:"Enflasyon etkisi",
+    compoundTitle:"Bileşik büyüme hesaplayıcısı",compoundIntro:"Başlangıç tutarı ve düzenli katkıların varsayılan yıllık getiriyle nasıl büyüyebileceğini hesaplayın.",
+    initialAmount:"Başlangıç tutarı",monthlyDeposit:"Aylık katkı",annualReturn:"Varsayılan yıllık getiri (%)",years:"Yıl",
+    estimatedValue:"Örnek gelecek değer",
+    loanTitle:"Kredi geri ödeme hesaplayıcısı",loanIntro:"Sabit faizli basitleştirilmiş kredi formülüyle aylık ödemeyi tahmin edin.",
+    loanAmount:"Kredi tutarı",loanRate:"Yıllık faiz (%)",loanYears:"Vade (yıl)",extraFees:"Ek masraflar",
+    monthlyPayment:"Tahmini aylık ödeme",
+    inflationTitle:"Enflasyon etkisi hesaplayıcısı",inflationIntro:"Varsayılan enflasyon oranının zaman içinde satın alma gücünü nasıl etkileyebileceğini inceleyin.",
+    currentAmount:"Bugünkü tutar",inflationRate:"Yıllık enflasyon (%)",inflationYears:"Yıl sayısı",futureCost:"Gelecekte eşdeğer maliyet",
+    calcWarning:"Hesaplayıcı sonuçları yalnızca eğitim amaçlı tahminlerdir. Girilmediği sürece vergi, ücret, değişen oranlar ve diğer gerçek yaşam faktörleri hesaba katılmaz. Yatırım getirisi garanti değildir.",
+    insightEyebrow:"YAYINLAR VE ANALİZLER",insightTitle:"Anlamaya değer fikirler",
+    insightIntro:"Finansal kararlar için daha güçlü bir bakış açısı geliştirin.",
+    articleTag1:"YATIRIMIN TEMELLERİ",articleTitle1:"Çeşitlendirme neden önemlidir?",
+    articleText1:"Farklı varlıklara yatırım yapmanın yoğunlaşma riskini yönetmeye nasıl yardımcı olabileceğini öğrenin.",
+    articleTag2:"KİŞİSEL FİNANS",articleTitle2:"Acil durum fonu oluşturmak",
+    articleText2:"Likiditeyi, beklenmedik harcamaları ve pratik tasarruf yaklaşımını anlayın.",
+    articleTag3:"KÜRESEL PİYASALAR",articleTitle3:"Kur riskini anlamak",
+    articleText3:"Döviz hareketlerinin uluslararası yatırımları ve alışverişleri nasıl etkileyebileceğini görün.",
+    readArticle:"Makaleyi oku →",
+    newsletterEyebrow:"FINANCE EDGE BÜLTENİ",newsletterTitle:"Finansa daha net bir bakış.",
+    newsletterText:"Eğitici içerikler, finansal kavramlar ve yeni araçlar e-posta adresinize gelsin.",
+    subscribe:"Abone ol",newsletterConsent:"Abone olarak bülten koşullarını ve gizlilik bildirimini kabul edersiniz. İstediğiniz zaman abonelikten ayrılabilirsiniz.",
+    faqEyebrow:"YARDIM MERKEZİ",faqTitle:"Sıkça sorulan sorular",
+    faqQ1:"Finance Edge finansal danışmanlık hizmeti midir?",
+    faqA1:"Hayır. Finance Edge finansal eğitim ve bilgilendirme sitesi olarak tasarlanmıştır. Kişiye özel yatırım, vergi veya hukuk danışmanlığı sunmaz.",
+    faqQ2:"Piyasa rakamları canlı mı?",
+    faqA2:"Hayır. Gösterilen piyasa rakamları örnek değerlerdir. Canlı veri için lisanslı bir piyasa verisi sağlayıcısı bağlanmalıdır.",
+    faqQ3:"Finance Edge belirli yatırımları öneriyor mu?",
+    faqA3:"Hayır. Eğitim içerikleri kavramları ve karşılaştırma kriterlerini açıklar; belirli bir yatırım veya finansal ürün önermez.",
+    faqQ4:"Web sitesi nasıl gelir elde eder?",
+    faqA4:"Olası gelir kanalları reklamlar, açıkça belirtilen satış ortaklıkları ve sponsorluklardır. Bunlar onaylara, yerel yasalara ve sağlayıcı şartlarına bağlıdır.",
+    footerAbout:"Daha bilinçli bir dünya için bağımsız finans eğitimi. Karar vermeden önce rakamları anlayın.",
+    footerExplore:"KEŞFET",footerLegal:"YASAL",footerContact:"İLETİŞİM",
+    privacy:"Gizlilik politikası",terms:"Kullanım koşulları",affiliate:"Satış ortaklığı bildirimi",
+    risk:"Risk bildirimi",cookies:"Çerez politikası",helpCenter:"Yardım merkezi",aboutUs:"Hakkımızda",
+    footerDisclaimer:"Finance Edge yalnızca genel eğitim ve bilgilendirme sunar. Bu web sitesindeki hiçbir içerik yatırım, finans, hukuk veya vergi tavsiyesi, teklif ya da davet niteliğinde değildir. Finansal ürünler anapara kaybı dahil risk içerebilir. Kendi araştırmanızı yapın ve gerektiğinde yetkin bir uzmana danışın.",
+    rights:"Tüm hakları saklıdır.",footerTagline:"Bilgi, finansal avantajınızdır.",
+    cookieText:"Bu web sitesi temel çerezleri ve izninizle deneyimi geliştirmek ve performansı ölçmek için isteğe bağlı çerezleri kullanır.",
+    cookieReject:"İsteğe bağlıları reddet",cookieAccept:"Tümünü kabul et",
+    newsletterSuccess:"Teşekkürler! Bu demo formu henüz e-posta listesine bağlı değil.",
+    newsletterInvalid:"Lütfen geçerli bir e-posta adresi girin.",
+    compoundDetail:"Toplam yatırılan: {invested} · Tahmini kazanç: {gain}",
+    loanDetail:"Toplam geri ödeme: {total} · Ek masraflar dahil",
+    inflationDetail:"Bugünkü {amount} tutarının satın alma gücü, varsayılan enflasyonla azalabilir.",
+    legalPrivacy:"Gizlilik politikası taslağı\n\nBu sayfa yayına alınmadan önce işletmecinin gerçek kimliği, adresi, veri sorumlusu bilgileri, işleme amaçları, hukuki sebepler, saklama süreleri, alıcılar ve kullanıcı hakları eklenmelidir.\n\nE-posta kayıtları, analiz araçları, reklam çerezleri ve üçüncü taraf hizmetler kullanılıyorsa bunlar açıkça belirtilmelidir. Türkiye için KVKK ve uygulanıyorsa Avrupa Ekonomik Alanı için GDPR gereklilikleri hukuk danışmanıyla değerlendirilmelidir. Bu metin hazır bir hukuki uyum belgesi değildir.",
+    legalTerms:"Kullanım koşulları taslağı\n\nFinance Edge içerikleri genel eğitim amaçlıdır. İçerikler kişisel durumunuza uygun tavsiye olarak değerlendirilmemelidir. Kullanıcılar bilgileri bağımsız biçimde doğrulamalıdır.\n\nSite sahibi; gerçek işletme adı, iletişim adresi, uygulanacak hukuk, sorumluluk sınırları, fikri mülkiyet ve uyuşmazlık süreçlerini yayından önce eklemelidir. Bu taslak hukuki incelemenin yerini tutmaz.",
+    legalAffiliate:"Satış ortaklığı bildirimi\n\nFinance Edge gelecekte bazı ürün veya hizmet bağlantılarından komisyon kazanabilir. Böyle bir bağlantı kullanıldığında, bunun satış ortaklığı bağlantısı olduğu ilgili içerikte açık ve görünür biçimde belirtilmelidir.\n\nKomisyon alınması, içeriğin tarafsızlığı veya ürünün kullanıcıya uygunluğu hakkında garanti oluşturmaz. Finansal ürünler ve yatırım hizmetleri için ülkeye özgü reklam ve yönlendirme kuralları ayrıca incelenmelidir.",
+    legalRisk:"Risk bildirimi\n\nYatırım değeri yükselebilir veya düşebilir. Geçmiş performans gelecekteki sonuçların göstergesi değildir. Döviz, faiz, likidite, piyasa, ihraççı ve ülke riskleri kayba yol açabilir.\n\nKaldıraçlı işlemler ve karmaşık ürünler daha yüksek risk taşıyabilir. Karar vermeden önce ürün belgelerini ve risk açıklamalarını okuyun.",
+    legalCookies:"Çerez politikası taslağı\n\nGerekli çerezler sitenin temel işlevleri için kullanılabilir. Analitik, reklam ve kişiselleştirme çerezleri için geçerli mevzuata uygun izin alınmalıdır.\n\nBu örnek çerez bildirimi tam bir izin yönetim sistemi değildir. Avrupa Ekonomik Alanı ve Birleşik Krallık gibi bölgelerde reklam çerezleri için Google sertifikalı bir CMP ve uygun izin entegrasyonu gerekebilir.",
+    legalAbout:"Finance Edge, finansal okuryazarlığı geliştirmek amacıyla tasarlanmış bir eğitim ve bilgi platformu örneğidir.\n\nYayına almadan önce gerçek işletme adı, adresi, iletişim bilgileri, ekip bilgileri ve yayın politikası eklenmelidir."
+},
+en: {
+    navMarkets:"Markets",navLearn:"Education",navCompare:"Compare",navCalculators:"Calculators",navInsights:"Insights",
+    heroEyebrow:"FINANCIAL KNOWLEDGE. BETTER DECISIONS.",
+    heroTitle:'Your future deserves a <span class="gold-text">smarter</span> financial edge.',
+    heroText:"Learn how markets work, compare financial products and make more informed decisions with clear educational tools.",
+    heroButton1:"Explore Calculators ↗",heroButton2:"Start Learning",
+    heroNote:"Independent financial education · Türkiye · Europe · Global markets",
+    portfolioDemo:"ILLUSTRATIVE MARKET OVERVIEW",demoData:"DEMO DATA",
+    statOne:"Learning tools",statTwo:"Markets covered",statThree:"Languages",
+    marketEyebrow:"MARKET SNAPSHOT",marketTitle:"Explore global markets",
+    marketIntro:"Understand the major market categories and the factors that can influence them.",
+    illustrative:"Illustrative",marketWarning:"Important: The figures above are illustrative demonstration values, not live market prices. Connect a licensed market-data provider before publishing real-time quotes.",
+    learnEyebrow:"KNOWLEDGE CENTER",learnTitle:"Build your financial knowledge",
+    learnIntro:"Clear explanations to help you understand financial concepts before making decisions.",
+    learnCard1Title:"Investment fundamentals",learnCard1Text:"Understand risk, return, diversification, time horizon and the basics of long-term investing.",
+    learnCard2Title:"ETFs and funds",learnCard2Text:"Explore fund structures, expense ratios, asset allocation and tracking differences.",
+    learnCard3Title:"Personal finance",learnCard3Text:"Learn about savings, budgeting, borrowing costs, inflation and emergency funds.",
+    readGuide:"Read learning guides →",exploreFunds:"Explore comparison →",useCalculators:"Use calculators →",
+    compareEyebrow:"SMART COMPARISON",compareTitle:"Compare before you choose",
+    compareIntro:"Use these criteria to evaluate financial products. Availability and terms vary by country and provider.",
+    tableProduct:"Product category",tableCosts:"Costs to check",tableRisk:"Key considerations",tableRegion:"Availability",
+    row1name:"Cashback cards",row1cost:"Annual fee, interest, FX fee",row1risk:"Spending conditions, reward caps",
+    row2name:"Travel reward cards",row2cost:"Annual fee, FX fee, redemption costs",row2risk:"Miles expiry, travel benefits, exclusions",
+    row3name:"Index ETFs",row3cost:"Expense ratio, trading fees, spreads",row3risk:"Index exposure, currency, volatility",
+    row4name:"Savings accounts",row4cost:"Account fees, withdrawal conditions",row4risk:"Deposit protection, variable rates",
+    varies:"Varies by country",jurisdiction:"Jurisdiction-dependent",
+    compareWarning:"This is an educational comparison framework, not a list of specific bank or investment offers. Verify product terms directly with regulated providers.",
+    calcEyebrow:"FINANCIAL TOOLS",calcTitle:"Make the numbers clearer",
+    calcIntro:"Try interactive calculators to explore hypothetical savings, borrowing and inflation scenarios.",
+    tabCompound:"Compound growth",tabLoan:"Loan calculator",tabInflation:"Inflation impact",
+    compoundTitle:"Compound growth calculator",compoundIntro:"Estimate how an initial amount and regular contributions could grow under an assumed annual return.",
+    initialAmount:"Initial amount",monthlyDeposit:"Monthly contribution",annualReturn:"Assumed annual return (%)",years:"Years",
+    estimatedValue:"Illustrative future value",
+    loanTitle:"Loan repayment calculator",loanIntro:"Estimate monthly repayments using a simplified fixed-rate loan formula.",
+    loanAmount:"Loan amount",loanRate:"Annual interest (%)",loanYears:"Term (years)",extraFees:"Additional fees",
+    monthlyPayment:"Estimated monthly payment",
+    inflationTitle:"Inflation impact calculator",inflationIntro:"Explore how an assumed inflation rate may affect purchasing power over time.",
+    currentAmount:"Amount today",inflationRate:"Annual inflation (%)",inflationYears:"Number of years",futureCost:"Equivalent future cost",
+    calcWarning:"Calculator outputs are estimates for education only. They exclude taxes, fees, changing rates and other real-world factors unless specifically entered. Investment returns are not guaranteed.",
+    insightEyebrow:"EDITORIAL & INSIGHTS",insightTitle:"Ideas worth understanding",
+    insightIntro:"Explore foundational topics and build a stronger framework for financial decisions.",
+    articleTag1:"INVESTING BASICS",articleTitle1:"Why diversification matters",articleText1:"Learn how spreading exposure across different assets can help manage concentration risk.",
+    articleTag2:"PERSONAL FINANCE",articleTitle2:"Building an emergency fund",articleText2:"Understand liquidity, unexpected expenses and a practical approach to savings.",
+    articleTag3:"GLOBAL MARKETS",articleTitle3:"Understanding currency risk",articleText3:"See how exchange-rate movements can affect international investments and purchases.",
+    readArticle:"Read article →",newsletterEyebrow:"FINANCE EDGE LETTER",newsletterTitle:"A clearer view of finance.",
+    newsletterText:"Get educational insights, financial concepts and new tools delivered to your inbox.",
+    subscribe:"Subscribe",newsletterConsent:"By subscribing, you agree to the newsletter terms and privacy notice. You can unsubscribe at any time.",
+    faqEyebrow:"HELP CENTER",faqTitle:"Frequently asked questions",
+    faqQ1:"Is Finance Edge a financial advisory service?",faqA1:"No. Finance Edge is designed as a financial education and information website. It does not provide personalized investment, tax or legal advice.",
+    faqQ2:"Are the market numbers live?",faqA2:"No. The market figures currently shown are illustrative demo values. A licensed market-data provider must be connected for live data.",
+    faqQ3:"Does Finance Edge recommend specific investments?",faqA3:"No. Educational content is intended to explain concepts and comparison criteria, not to recommend a specific investment or financial product.",
+    faqQ4:"How does the website earn revenue?",faqA4:"Potential revenue channels include advertising, clearly disclosed affiliate partnerships and sponsorships. Availability depends on approval, local laws and provider terms.",
+    footerAbout:"Independent financial education for a more informed world. Understand the numbers before making decisions.",
+    footerExplore:"EXPLORE",footerLegal:"LEGAL",footerContact:"CONTACT",privacy:"Privacy policy",terms:"Terms of use",
+    affiliate:"Affiliate disclosure",risk:"Risk disclosure",cookies:"Cookie policy",helpCenter:"Help center",aboutUs:"About us",
+    footerDisclaimer:"Finance Edge provides general educational information only. Nothing on this website constitutes investment, financial, legal or tax advice, an offer, or a solicitation. Financial products can involve risk, including loss of capital. Always conduct your own research and consult a qualified professional where appropriate.",
+    rights:"All rights reserved.",footerTagline:"Knowledge is your financial edge.",
+    cookieText:"This website uses essential cookies and, with your permission, optional cookies to improve the experience and measure performance.",
+    cookieReject:"Reject optional",cookieAccept:"Accept all",
+    newsletterSuccess:"Thank you! This demo form is not connected to an email list yet.",
+    newsletterInvalid:"Please enter a valid email address.",
+    compoundDetail:"Total contributions: {invested} · Estimated gain: {gain}",
+    loanDetail:"Total repayment: {total} · Includes additional fees",
+    inflationDetail:"The purchasing power of {amount} today may decrease with the assumed inflation rate.",
+    legalPrivacy:"Privacy policy template\n\nBefore launch, add the operator's legal identity, address, data-controller details, processing purposes, legal bases, retention periods, recipients and user rights.\n\nDisclose newsletter records, analytics tools, advertising cookies and third-party services. Review GDPR and any other applicable local privacy laws with qualified counsel. This template is not a complete legal compliance document.",
+    legalTerms:"Terms of use template\n\nFinance Edge content is for general education. It should not be treated as advice suitable for your personal circumstances. Users should independently verify information.\n\nBefore launch, add the owner's legal name, contact address, governing law, liability provisions, intellectual property rules and dispute process. Obtain legal review.",
+    legalAffiliate:"Affiliate disclosure\n\nFinance Edge may earn commissions from some product or service links in the future. Where applicable, clearly disclose affiliate links next to the relevant content.\n\nA commission does not guarantee that a product is suitable or that the content is unbiased. Country-specific advertising and referral rules for financial products must be reviewed separately.",
+    legalRisk:"Risk disclosure\n\nInvestment values can rise or fall. Past performance does not indicate future results. Currency, interest-rate, liquidity, market, issuer and country risks can lead to losses.\n\nLeveraged and complex products may carry greater risk. Read product documentation and risk disclosures before making decisions.",
+    legalCookies:"Cookie policy template\n\nEssential cookies may be used for core site functions. Consent for analytics, advertising and personalization cookies must comply with applicable law.\n\nThis sample banner is not a complete consent-management platform. Regions such as the EEA and UK may require a Google-certified CMP and appropriate consent integration for advertising cookies.",
+    legalAbout:"Finance Edge is an example education and information platform designed to support financial literacy.\n\nBefore launch, add the real business name, address, contact details, team information and editorial policy."
+},
+de: {
+    navMarkets:"Märkte",navLearn:"Wissen",navCompare:"Vergleichen",navCalculators:"Rechner",navInsights:"Analysen",
+    heroEyebrow:"FINANZWISSEN. BESSERE ENTSCHEIDUNGEN.",
+    heroTitle:'Ihre Zukunft verdient einen <span class="gold-text">klügeren</span> finanziellen Vorsprung.',
+    heroText:"Verstehen Sie die Märkte, vergleichen Sie Finanzprodukte und treffen Sie fundiertere Entscheidungen mit verständlichen Lernwerkzeugen.",
+    heroButton1:"Rechner entdecken ↗",heroButton2:"Jetzt lernen",
+    heroNote:"Unabhängige Finanzbildung · Türkei · Europa · Weltmärkte",
+    portfolioDemo:"ILLUSTRATIVE MARKTÜBERSICHT",demoData:"BEISPIELDATEN",
+    statOne:"Lernwerkzeuge",statTwo:"Abgedeckte Märkte",statThree:"Sprachen",
+    marketEyebrow:"MARKTÜBERSICHT",marketTitle:"Globale Märkte entdecken",
+    marketIntro:"Verstehen Sie wichtige Marktkategorien und mögliche Einflussfaktoren.",
+    illustrative:"Beispiel",marketWarning:"Wichtig: Die angezeigten Zahlen sind illustrative Beispielwerte und keine Live-Kurse. Für Echtzeitkurse muss ein lizenzierter Datenanbieter eingebunden werden.",
+    learnEyebrow:"WISSENSCENTER",learnTitle:"Bauen Sie Ihr Finanzwissen aus",
+    learnIntro:"Klare Erklärungen zu Finanzkonzepten als Grundlage für fundierte Entscheidungen.",
+    learnCard1Title:"Anlagegrundlagen",learnCard1Text:"Verstehen Sie Risiko, Rendite, Diversifikation, Anlagehorizont und langfristiges Investieren.",
+    learnCard2Title:"ETFs und Fonds",learnCard2Text:"Entdecken Sie Fondsstrukturen, Kostenquoten, Vermögensaufteilung und Indexabweichungen.",
+    learnCard3Title:"Persönliche Finanzen",learnCard3Text:"Lernen Sie über Sparen, Budgetplanung, Kreditkosten, Inflation und Notfallreserven.",
+    readGuide:"Lernleitfäden lesen →",exploreFunds:"Vergleich ansehen →",useCalculators:"Rechner nutzen →",
+    compareEyebrow:"INTELLIGENTER VERGLEICH",compareTitle:"Erst vergleichen, dann entscheiden",
+    compareIntro:"Nutzen Sie diese Kriterien zur Bewertung von Finanzprodukten. Verfügbarkeit und Konditionen unterscheiden sich je nach Land und Anbieter.",
+    tableProduct:"Produktkategorie",tableCosts:"Zu prüfende Kosten",tableRisk:"Wichtige Aspekte",tableRegion:"Verfügbarkeit",
+    row1name:"Cashback-Karten",row1cost:"Jahresgebühr, Zinsen, Fremdwährungsgebühr",row1risk:"Ausgabebedingungen, Prämienlimits",
+    row2name:"Reisekreditkarten",row2cost:"Jahresgebühr, Fremdwährungsgebühr, Einlösungskosten",row2risk:"Meilenverfall, Reiseleistungen, Ausschlüsse",
+    row3name:"Index-ETFs",row3cost:"Gesamtkostenquote, Handelsgebühren, Spreads",row3risk:"Index, Währung, Schwankungen",
+    row4name:"Sparkonten",row4cost:"Kontogebühren, Auszahlungsbedingungen",row4risk:"Einlagenschutz, variable Zinsen",
+    varies:"Je nach Land",jurisdiction:"Abhängig von Rechtsordnung",
+    compareWarning:"Dies ist ein Bildungsrahmen und keine Liste konkreter Bank- oder Anlageangebote. Prüfen Sie die Konditionen direkt bei regulierten Anbietern.",
+    calcEyebrow:"FINANZTOOLS",calcTitle:"Zahlen verständlicher machen",
+    calcIntro:"Testen Sie interaktive Rechner für hypothetische Spar-, Kredit- und Inflationsszenarien.",
+    tabCompound:"Zinseszins",tabLoan:"Kreditrechner",tabInflation:"Inflationseffekt",
+    compoundTitle:"Zinseszinsrechner",compoundIntro:"Schätzen Sie, wie ein Anfangsbetrag und regelmäßige Einzahlungen bei einer angenommenen Jahresrendite wachsen könnten.",
+    initialAmount:"Anfangsbetrag",monthlyDeposit:"Monatlicher Beitrag",annualReturn:"Angenommene Jahresrendite (%)",years:"Jahre",
+    estimatedValue:"Beispielhafter Endwert",
+    loanTitle:"Kreditrechner",loanIntro:"Schätzen Sie monatliche Raten mit einer vereinfachten Formel für einen Kredit mit festem Zinssatz.",
+    loanAmount:"Kreditbetrag",loanRate:"Jahreszins (%)",loanYears:"Laufzeit (Jahre)",extraFees:"Zusätzliche Gebühren",
+    monthlyPayment:"Geschätzte Monatsrate",
+    inflationTitle:"Inflationsrechner",inflationIntro:"Untersuchen Sie, wie eine angenommene Inflationsrate die Kaufkraft beeinflussen kann.",
+    currentAmount:"Heutiger Betrag",inflationRate:"Jährliche Inflation (%)",inflationYears:"Anzahl der Jahre",futureCost:"Entsprechende zukünftige Kosten",
+    calcWarning:"Die Ergebnisse sind nur Schätzungen zu Bildungszwecken. Steuern, Gebühren und veränderliche Bedingungen sind nicht enthalten, sofern nicht eingegeben. Renditen sind nicht garantiert.",
+    insightEyebrow:"ARTIKEL UND ANALYSEN",insightTitle:"Wissenswerte Themen",
+    insightIntro:"Entdecken Sie Grundlagen und entwickeln Sie ein besseres Verständnis finanzieller Entscheidungen.",
+    articleTag1:"ANLAGEGRUNDLAGEN",articleTitle1:"Warum Diversifikation wichtig ist",articleText1:"Erfahren Sie, wie eine Streuung über verschiedene Anlagen Konzentrationsrisiken mindern kann.",
+    articleTag2:"PERSÖNLICHE FINANZEN",articleTitle2:"Einen Notfallfonds aufbauen",articleText2:"Verstehen Sie Liquidität, unerwartete Ausgaben und praktische Sparansätze.",
+    articleTag3:"WELTMÄRKTE",articleTitle3:"Währungsrisiken verstehen",articleText3:"Erfahren Sie, wie Wechselkurse internationale Anlagen und Käufe beeinflussen können.",
+    readArticle:"Artikel lesen →",newsletterEyebrow:"FINANCE EDGE NEWSLETTER",newsletterTitle:"Finanzen klarer verstehen.",
+    newsletterText:"Erhalten Sie Lerninhalte, Finanzwissen und neue Werkzeuge per E-Mail.",
+    subscribe:"Abonnieren",newsletterConsent:"Mit der Anmeldung akzeptieren Sie die Newsletter-Bedingungen und Datenschutzhinweise. Eine Abmeldung ist jederzeit möglich.",
+    faqEyebrow:"HILFEBEREICH",faqTitle:"Häufig gestellte Fragen",
+    faqQ1:"Ist Finance Edge ein Finanzberatungsdienst?",faqA1:"Nein. Finance Edge ist als Website für Finanzbildung und Informationen konzipiert. Sie bietet keine persönliche Anlage-, Steuer- oder Rechtsberatung.",
+    faqQ2:"Sind die Marktdaten live?",faqA2:"Nein. Die angezeigten Werte sind Beispieldaten. Für Live-Daten muss ein lizenzierter Anbieter eingebunden werden.",
+    faqQ3:"Empfiehlt Finance Edge bestimmte Anlagen?",faqA3:"Nein. Die Inhalte erklären Konzepte und Vergleichskriterien und empfehlen keine konkrete Anlage oder Finanzprodukte.",
+    faqQ4:"Wie erzielt die Website Einnahmen?",faqA4:"Mögliche Einnahmequellen sind Werbung, offengelegte Partnerlinks und Sponsoring. Sie hängen von Genehmigungen, lokalen Gesetzen und Anbieterbedingungen ab.",
+    footerAbout:"Unabhängige Finanzbildung für eine informierte Welt. Verstehen Sie die Zahlen, bevor Sie entscheiden.",
+    footerExplore:"ENTDECKEN",footerLegal:"RECHTLICHES",footerContact:"KONTAKT",
+    privacy:"Datenschutzerklärung",terms:"Nutzungsbedingungen",affiliate:"Partnerhinweis",risk:"Risikohinweis",cookies:"Cookie-Richtlinie",helpCenter:"Hilfe",aboutUs:"Über uns",
+    footerDisclaimer:"Finance Edge bietet ausschließlich allgemeine Bildungsinformationen. Nichts auf dieser Website ist eine Anlage-, Finanz-, Rechts- oder Steuerberatung, ein Angebot oder eine Aufforderung. Finanzprodukte können Risiken bis hin zum Kapitalverlust enthalten. Recherchieren Sie selbst und wenden Sie sich bei Bedarf an qualifizierte Fachleute.",
+    rights:"Alle Rechte vorbehalten.",footerTagline:"Wissen ist Ihr finanzieller Vorsprung.",
+    cookieText:"Diese Website verwendet notwendige Cookies und mit Ihrer Zustimmung optionale Cookies zur Verbesserung der Nutzung und Leistungsmessung.",
+    cookieReject:"Optionale ablehnen",cookieAccept:"Alle akzeptieren",
+    newsletterSuccess:"Vielen Dank! Dieses Demoformular ist noch nicht mit einer E-Mail-Liste verbunden.",
+    newsletterInvalid:"Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+    compoundDetail:"Einzahlungen gesamt: {invested} · Geschätzter Gewinn: {gain}",
+    loanDetail:"Gesamtrückzahlung: {total} · Zusätzliche Gebühren enthalten",
+    inflationDetail:"Die heutige Kaufkraft von {amount} kann durch die angenommene Inflation sinken.",
+    legalPrivacy:"Vorlage für Datenschutzinformationen\n\nVor dem Start müssen die tatsächliche Identität des Betreibers, Anschrift, Verantwortlichkeit, Verarbeitungszwecke, Rechtsgrundlagen, Speicherfristen, Empfänger und Nutzerrechte ergänzt werden.\n\nNewsletterdaten, Analysewerkzeuge, Werbe-Cookies und Drittanbieter müssen offengelegt werden. Lassen Sie die Anforderungen der DSGVO und anderer geltender Gesetze fachkundig prüfen. Diese Vorlage ist kein vollständiges Rechtsdokument.",
+    legalTerms:"Vorlage für Nutzungsbedingungen\n\nDie Inhalte dienen der allgemeinen Bildung und sind keine individuelle Beratung. Nutzer sollten Angaben eigenständig überprüfen.\n\nVor dem Start sind Betreibername, Anschrift, anwendbares Recht, Haftungsregeln, geistiges Eigentum und Streitbeilegung zu ergänzen und rechtlich prüfen zu lassen.",
+    legalAffiliate:"Partnerhinweis\n\nFinance Edge kann künftig an bestimmten Produkt- oder Dienstleistungslinks Provisionen verdienen. Solche Links müssen direkt beim jeweiligen Inhalt klar gekennzeichnet werden.\n\nEine Provision bedeutet nicht, dass ein Produkt geeignet oder ein Inhalt unabhängig ist. Länderbezogene Regeln für Finanzwerbung und Empfehlungen sind gesondert zu prüfen.",
+    legalRisk:"Risikohinweis\n\nAnlagewerte können steigen oder fallen. Vergangene Wertentwicklungen sind kein verlässlicher Indikator für zukünftige Ergebnisse. Währungs-, Zins-, Liquiditäts-, Markt-, Emittenten- und Länderrisiken können zu Verlusten führen.\n\nLesen Sie Produktunterlagen und Risikohinweise vor einer Entscheidung.",
+    legalCookies:"Cookie-Richtlinie\n\nNotwendige Cookies können für Kernfunktionen eingesetzt werden. Für Analyse-, Werbe- und Personalisierungscookies ist eine gesetzeskonforme Einwilligung erforderlich.\n\nDieses Beispiel ist kein vollständiges Consent-Management-System. Im EWR und Vereinigten Königreich kann für Werbung eine zertifizierte CMP-Integration erforderlich sein.",
+    legalAbout:"Finance Edge ist ein Beispiel für eine Bildungs- und Informationsplattform zur Förderung der Finanzkompetenz.\n\nErgänzen Sie vor dem Start den echten Unternehmensnamen, die Anschrift, Kontaktdaten, Teamangaben und redaktionelle Richtlinien."
+},
+ru: {
+    navMarkets:"Рынки",navLearn:"Обучение",navCompare:"Сравнение",navCalculators:"Калькуляторы",navInsights:"Аналитика",
+    heroEyebrow:"ФИНАНСОВЫЕ ЗНАНИЯ. ВЗВЕШЕННЫЕ РЕШЕНИЯ.",
+    heroTitle:'Ваше будущее заслуживает <span class="gold-text">более разумного</span> финансового подхода.',
+    heroText:"Изучайте рынки, сравнивайте финансовые продукты и принимайте более обоснованные решения с помощью понятных образовательных инструментов.",
+    heroButton1:"Открыть калькуляторы ↗",heroButton2:"Начать обучение",
+    heroNote:"Независимое финансовое образование · Турция · Европа · Мировые рынки",
+    portfolioDemo:"ПРИМЕР ОБЗОРА РЫНКА",demoData:"ДЕМО-ДАННЫЕ",
+    statOne:"Учебные инструменты",statTwo:"Охват рынков",statThree:"Языки",
+    marketEyebrow:"ОБЗОР РЫНКА",marketTitle:"Изучайте мировые рынки",
+    marketIntro:"Узнайте об основных категориях рынков и факторах, которые могут на них влиять.",
+    illustrative:"Пример",marketWarning:"Важно: приведённые цифры являются демонстрационными, а не текущими рыночными ценами. Для публикации котировок в реальном времени подключите лицензированного поставщика данных.",
+    learnEyebrow:"ЦЕНТР ЗНАНИЙ",learnTitle:"Развивайте финансовую грамотность",
+    learnIntro:"Понятные объяснения финансовых концепций перед принятием решений.",
+    learnCard1Title:"Основы инвестирования",learnCard1Text:"Изучите риск, доходность, диверсификацию, горизонт инвестирования и долгосрочный подход.",
+    learnCard2Title:"ETF и фонды",learnCard2Text:"Узнайте о структуре фондов, расходах, распределении активов и отслеживании индексов.",
+    learnCard3Title:"Личные финансы",learnCard3Text:"Изучите сбережения, бюджет, стоимость кредитов, инфляцию и резервный фонд.",
+    readGuide:"Читать руководства →",exploreFunds:"Перейти к сравнению →",useCalculators:"Использовать калькуляторы →",
+    compareEyebrow:"СРАВНЕНИЕ",compareTitle:"Сравнивайте перед выбором",
+    compareIntro:"Используйте эти критерии для оценки финансовых продуктов. Доступность и условия зависят от страны и поставщика.",
+    tableProduct:"Категория продукта",tableCosts:"Какие расходы проверить",tableRisk:"Основные факторы",tableRegion:"Доступность",
+    row1name:"Карты с кешбэком",row1cost:"Годовая плата, проценты, комиссия за валюту",row1risk:"Условия расходов, лимиты вознаграждений",
+    row2name:"Карты для путешествий",row2cost:"Годовая плата, валютная комиссия, сборы за обмен",row2risk:"Срок действия миль, льготы, исключения",
+    row3name:"Индексные ETF",row3cost:"Расходы фонда, комиссии, спреды",row3risk:"Индекс, валюта, волатильность",
+    row4name:"Сберегательные счета",row4cost:"Комиссии, условия снятия средств",row4risk:"Защита вкладов, переменные ставки",
+    varies:"Зависит от страны",jurisdiction:"Зависит от законодательства",
+    compareWarning:"Это образовательная схема сравнения, а не список конкретных банковских или инвестиционных предложений. Проверяйте условия у регулируемых поставщиков.",
+    calcEyebrow:"ФИНАНСОВЫЕ ИНСТРУМЕНТЫ",calcTitle:"Разберитесь в цифрах",
+    calcIntro:"Используйте интерактивные калькуляторы для изучения гипотетических сценариев накоплений, кредитов и инфляции.",
+    tabCompound:"Сложный процент",tabLoan:"Кредитный калькулятор",tabInflation:"Влияние инфляции",
+    compoundTitle:"Калькулятор сложного процента",compoundIntro:"Оцените, как первоначальная сумма и регулярные взносы могут расти при заданной годовой доходности.",
+    initialAmount:"Начальная сумма",monthlyDeposit:"Ежемесячный взнос",annualReturn:"Предполагаемая доходность (%)",years:"Лет",
+    estimatedValue:"Примерная будущая стоимость",
+    loanTitle:"Калькулятор кредита",loanIntro:"Оцените ежемесячный платёж по упрощённой формуле кредита с фиксированной ставкой.",
+    loanAmount:"Сумма кредита",loanRate:"Годовая ставка (%)",loanYears:"Срок (лет)",extraFees:"Дополнительные комиссии",
+    monthlyPayment:"Примерный ежемесячный платёж",
+    inflationTitle:"Калькулятор инфляции",inflationIntro:"Посмотрите, как предполагаемая инфляция может повлиять на покупательную способность.",
+    currentAmount:"Сумма сегодня",inflationRate:"Годовая инфляция (%)",inflationYears:"Количество лет",futureCost:"Эквивалентная будущая стоимость",
+    calcWarning:"Результаты калькуляторов являются образовательными оценками. Налоги, сборы и изменяющиеся условия не учитываются, если они не введены отдельно. Доходность не гарантируется.",
+    insightEyebrow:"СТАТЬИ И АНАЛИТИКА",insightTitle:"Темы, которые стоит понять",
+    insightIntro:"Изучайте основы и формируйте более сильную базу для финансовых решений.",
+    articleTag1:"ОСНОВЫ ИНВЕСТИРОВАНИЯ",articleTitle1:"Почему важна диверсификация",articleText1:"Узнайте, как распределение вложений между активами помогает управлять риском концентрации.",
+    articleTag2:"ЛИЧНЫЕ ФИНАНСЫ",articleTitle2:"Создание резервного фонда",articleText2:"Разберитесь в ликвидности, непредвиденных расходах и сбережениях.",
+    articleTag3:"МИРОВЫЕ РЫНКИ",articleTitle3:"Понимание валютного риска",articleText3:"Узнайте, как изменение валютных курсов влияет на международные инвестиции и покупки.",
+    readArticle:"Читать статью →",newsletterEyebrow:"РАССЫЛКА FINANCE EDGE",newsletterTitle:"Финансы понятнее.",
+    newsletterText:"Получайте образовательные материалы, финансовые объяснения и информацию о новых инструментах.",
+    subscribe:"Подписаться",newsletterConsent:"Подписываясь, вы соглашаетесь с условиями рассылки и уведомлением о конфиденциальности. Отписаться можно в любое время.",
+    faqEyebrow:"ЦЕНТР ПОМОЩИ",faqTitle:"Часто задаваемые вопросы",
+    faqQ1:"Является ли Finance Edge финансовым консультантом?",faqA1:"Нет. Finance Edge — образовательный информационный сайт. Он не предоставляет персональные инвестиционные, налоговые или юридические консультации.",
+    faqQ2:"Рыночные показатели обновляются в реальном времени?",faqA2:"Нет. Отображаемые значения демонстрационные. Для актуальных данных необходимо подключить лицензированного поставщика.",
+    faqQ3:"Рекомендует ли Finance Edge конкретные инвестиции?",faqA3:"Нет. Материалы объясняют концепции и критерии сравнения, но не рекомендуют конкретные инвестиции или финансовые продукты.",
+    faqQ4:"Как сайт получает доход?",faqA4:"Возможные источники дохода — реклама, раскрытые партнёрские ссылки и спонсорство. Всё зависит от одобрения, местных законов и условий поставщиков.",
+    footerAbout:"Независимое финансовое образование для более информированного мира. Понимайте цифры до принятия решений.",
+    footerExplore:"РАЗДЕЛЫ",footerLegal:"ЮРИДИЧЕСКАЯ ИНФОРМАЦИЯ",footerContact:"КОНТАКТЫ",
+    privacy:"Политика конфиденциальности",terms:"Условия использования",affiliate:"Партнёрское раскрытие",risk:"Предупреждение о рисках",cookies:"Политика cookies",helpCenter:"Центр помощи",aboutUs:"О нас",
+    footerDisclaimer:"Finance Edge предоставляет только общую образовательную информацию. Материалы сайта не являются инвестиционной, финансовой, юридической или налоговой консультацией, предложением или приглашением. Финансовые продукты сопряжены с риском, включая потерю капитала. Проводите собственное исследование и при необходимости обращайтесь к квалифицированным специалистам.",
+    rights:"Все права защищены.",footerTagline:"Знания — ваше финансовое преимущество.",
+    cookieText:"Сайт использует необходимые файлы cookie и, с вашего согласия, дополнительные cookie для улучшения работы и анализа эффективности.",
+    cookieReject:"Отклонить дополнительные",cookieAccept:"Принять все",
+    newsletterSuccess:"Спасибо! Эта демонстрационная форма пока не подключена к списку рассылки.",
+    newsletterInvalid:"Введите действительный адрес электронной почты.",
+    compoundDetail:"Всего внесено: {invested} · Примерный доход: {gain}",
+    loanDetail:"Общая сумма выплат: {total} · С учётом дополнительных расходов",
+    inflationDetail:"Покупательная способность сегодняшней суммы {amount} может снизиться при заданной инфляции.",
+    legalPrivacy:"Шаблон политики конфиденциальности\n\nПеред запуском добавьте юридическое наименование оператора, адрес, цели и основания обработки данных, сроки хранения, получателей данных и права пользователей.\n\nРаскройте использование рассылки, аналитики, рекламных файлов cookie и сторонних сервисов. Требования применимого законодательства следует проверить с юристом. Этот текст не является готовым юридическим документом.",
+    legalTerms:"Шаблон условий использования\n\nМатериалы Finance Edge предназначены для общего образования и не являются индивидуальной рекомендацией. Пользователи должны самостоятельно проверять информацию.\n\nПеред запуском добавьте реальные сведения о владельце, контактный адрес, применимое право, положения об ответственности, интеллектуальной собственности и разрешении споров. Необходима юридическая проверка.",
+    legalAffiliate:"Партнёрское раскрытие\n\nВ будущем Finance Edge может получать комиссию за некоторые ссылки на продукты или услуги. Наличие партнёрских ссылок следует ясно указывать рядом с соответствующим материалом.\n\nКомиссия не означает, что продукт подходит пользователю. Правила рекламы финансовых продуктов и направления клиентов необходимо отдельно проверять для каждой страны.",
+    legalRisk:"Предупреждение о рисках\n\nСтоимость инвестиций может как расти, так и снижаться. Прошлые результаты не гарантируют будущих. Валютные, процентные, рыночные, кредитные и страновые риски могут привести к убыткам.\n\nПеред принятием решения изучите документы продукта и описание рисков.",
+    legalCookies:"Шаблон политики cookies\n\nНеобходимые cookies могут использоваться для базовой работы сайта. Для аналитических, рекламных и персонализированных cookies требуется согласие в соответствии с законом.\n\nЭтот пример не является полноценной системой управления согласием. В ЕЭЗ и Великобритании для рекламных cookies может потребоваться сертифицированная CMP.",
+    legalAbout:"Finance Edge — пример образовательной информационной платформы для повышения финансовой грамотности.\n\nПеред запуском добавьте реальные сведения о компании, адрес, контакты, команду и редакционную политику."
+},
+zh: {
+    navMarkets:"市场",navLearn:"教育",navCompare:"比较",navCalculators:"计算器",navInsights:"分析",
+    heroEyebrow:"金融知识 · 更明智的决策",
+    heroTitle:'您的未来值得拥有更<span class="gold-text">明智</span>的金融优势。',
+    heroText:"了解市场运作方式，比较金融产品，并通过清晰的教育工具做出更明智的决定。",
+    heroButton1:"使用计算器 ↗",heroButton2:"开始学习",
+    heroNote:"独立金融教育 · 土耳其 · 欧洲 · 全球市场",
+    portfolioDemo:"示例市场概览",demoData:"演示数据",
+    statOne:"学习工具",statTwo:"覆盖市场",statThree:"语言",
+    marketEyebrow:"市场概览",marketTitle:"探索全球市场",
+    marketIntro:"了解主要市场类别以及可能影响市场的因素。",
+    illustrative:"示例",marketWarning:"重要提示：以上数字仅为演示数据，并非实时市场价格。发布实时行情前，请接入获得许可的市场数据提供商。",
+    learnEyebrow:"知识中心",learnTitle:"提升您的金融知识",
+    learnIntro:"通过清晰的解释，在做出决定之前了解金融概念。",
+    learnCard1Title:"投资基础",learnCard1Text:"了解风险、回报、分散投资、投资期限和长期投资的基础知识。",
+    learnCard2Title:"ETF与基金",learnCard2Text:"了解基金结构、费用率、资产配置和指数跟踪差异。",
+    learnCard3Title:"个人理财",learnCard3Text:"学习储蓄、预算、借贷成本、通货膨胀和应急资金。",
+    readGuide:"阅读学习指南 →",exploreFunds:"查看比较 →",useCalculators:"使用计算器 →",
+    compareEyebrow:"智能比较",compareTitle:"选择之前先进行比较",
+    compareIntro:"使用这些标准评估金融产品。产品可用性和条款因国家和提供商而异。",
+    tableProduct:"产品类别",tableCosts:"需要检查的费用",tableRisk:"主要考虑因素",tableRegion:"可用性",
+    row1name:"返现卡",row1cost:"年费、利息、外币手续费",row1risk:"消费条件、奖励上限",
+    row2name:"旅行奖励卡",row2cost:"年费、外币费用、兑换成本",row2risk:"里程有效期、旅行福利、限制",
+    row3name:"指数ETF",row3cost:"基金费用率、交易费用、价差",row3risk:"指数敞口、货币、波动性",
+    row4name:"储蓄账户",row4cost:"账户费用、提款条件",row4risk:"存款保障、浮动利率",
+    varies:"因国家而异",jurisdiction:"取决于当地法规",
+    compareWarning:"这是一份教育用途的比较框架，并非具体银行或投资产品报价。请直接向受监管的提供商核实产品条款。",
+    calcEyebrow:"金融工具",calcTitle:"让数字更清晰",
+    calcIntro:"使用交互式计算器探索假设的储蓄、贷款和通胀情景。",
+    tabCompound:"复利增长",tabLoan:"贷款计算器",tabInflation:"通胀影响",
+    compoundTitle:"复利增长计算器",compoundIntro:"估算初始金额和定期投入在假设年回报率下可能如何增长。",
+    initialAmount:"初始金额",monthlyDeposit:"每月投入",annualReturn:"假设年回报率 (%)",years:"年",
+    estimatedValue:"示例未来价值",
+    loanTitle:"贷款还款计算器",loanIntro:"使用简化的固定利率贷款公式估算每月还款。",
+    loanAmount:"贷款金额",loanRate:"年利率 (%)",loanYears:"期限（年）",extraFees:"额外费用",
+    monthlyPayment:"预计每月还款",
+    inflationTitle:"通胀影响计算器",inflationIntro:"了解假设通胀率可能如何随时间影响购买力。",
+    currentAmount:"当前金额",inflationRate:"年通胀率 (%)",inflationYears:"年数",futureCost:"未来等值成本",
+    calcWarning:"计算器结果仅供教育参考。除非另行输入，否则不包括税费、费用和利率变化等现实因素。投资回报不作保证。",
+    insightEyebrow:"文章与分析",insightTitle:"值得了解的主题",
+    insightIntro:"探索基础知识，为金融决策建立更完善的认知框架。",
+    articleTag1:"投资基础",articleTitle1:"为什么分散投资很重要",articleText1:"了解将资金分散到不同资产如何帮助管理集中风险。",
+    articleTag2:"个人理财",articleTitle2:"建立应急储备金",articleText2:"了解流动性、意外开支和实用储蓄方法。",
+    articleTag3:"全球市场",articleTitle3:"了解汇率风险",articleText3:"了解汇率变动如何影响国际投资和购买。",
+    readArticle:"阅读文章 →",newsletterEyebrow:"FINANCE EDGE 邮件通讯",newsletterTitle:"更清晰地理解金融。",
+    newsletterText:"通过电子邮件获取教育内容、金融知识和新工具信息。",
+    subscribe:"订阅",newsletterConsent:"订阅即表示您同意邮件通讯条款和隐私声明。您可以随时取消订阅。",
+    faqEyebrow:"帮助中心",faqTitle:"常见问题",
+    faqQ1:"Finance Edge 是金融咨询服务吗？",faqA1:"不是。Finance Edge 是一个金融教育和信息网站，不提供个性化投资、税务或法律建议。",
+    faqQ2:"市场数据是实时的吗？",faqA2:"不是。目前显示的数据为演示数值。实时数据需要接入获得许可的市场数据提供商。",
+    faqQ3:"Finance Edge 会推荐具体投资吗？",faqA3:"不会。教育内容旨在解释概念和比较标准，不推荐具体投资或金融产品。",
+    faqQ4:"网站如何获得收入？",faqA4:"潜在收入渠道包括广告、明确披露的联盟合作和赞助，具体取决于审批、当地法律和提供商条款。",
+    footerAbout:"为更知情的世界提供独立金融教育。做决定之前，先理解数字。",
+    footerExplore:"探索",footerLegal:"法律信息",footerContact:"联系",
+    privacy:"隐私政策",terms:"使用条款",affiliate:"联盟披露",risk:"风险披露",cookies:"Cookie政策",helpCenter:"帮助中心",aboutUs:"关于我们",
+    footerDisclaimer:"Finance Edge 仅提供一般教育信息。本网站内容不构成投资、金融、法律或税务建议，也不构成要约或招揽。金融产品可能涉及风险，包括本金损失。请自行研究，并在适当时咨询合格专业人士。",
+    rights:"版权所有。",footerTagline:"知识是您的金融优势。",
+    cookieText:"本网站使用必要的 Cookie，并在获得您的许可后使用可选 Cookie，以改善体验并衡量网站性能。",
+    cookieReject:"拒绝可选项",cookieAccept:"全部接受",
+    newsletterSuccess:"谢谢！此演示表单尚未连接到邮件订阅列表。",
+    newsletterInvalid:"请输入有效的电子邮件地址。",
+    compoundDetail:"投入总额：{invested} · 预计收益：{gain}",
+    loanDetail:"还款总额：{total} · 包含额外费用",
+    inflationDetail:"假设通胀率可能降低今天 {amount} 的购买力。",
+    legalPrivacy:"隐私政策模板\n\n网站上线前，必须补充运营者的真实法律身份、地址、数据控制者信息、处理目的、法律依据、保存期限、接收方和用户权利。\n\n如使用邮件订阅、分析工具、广告 Cookie 和第三方服务，应明确披露。请咨询法律专业人士，审查适用的隐私法律。本模板不是完整的法律合规文件。",
+    legalTerms:"使用条款模板\n\nFinance Edge 内容仅供一般教育使用，不应视为适合个人情况的建议。用户应自行核实信息。\n\n上线前请补充真实运营者名称、联系地址、适用法律、责任条款、知识产权规则和争议解决程序，并进行法律审查。",
+    legalAffiliate:"联盟合作披露\n\nFinance Edge 未来可能通过某些产品或服务链接获得佣金。如存在联盟链接，应在相关内容旁清晰披露。\n\n佣金并不意味着产品适合用户，也不代表内容完全独立。各国对金融产品广告和客户推荐的规定应另行审查。",
+    legalRisk:"风险披露\n\n投资价值可能上涨或下跌。过去的表现不能代表未来结果。汇率、利率、流动性、市场、发行方和国家风险都可能导致损失。\n\n杠杆和复杂产品可能具有更高风险。做出决定前，请阅读产品文件和风险披露。",
+    legalCookies:"Cookie政策模板\n\n必要的 Cookie 可用于网站基本功能。分析、广告和个性化 Cookie 应根据适用法律取得同意。\n\n此示例不是完整的同意管理平台。欧洲经济区和英国的广告 Cookie 可能需要经过认证的 CMP 及适当的同意集成。",
+    legalAbout:"Finance Edge 是一个旨在提高金融知识水平的教育与信息平台示例。\n\n上线前请添加真实企业名称、地址、联系方式、团队信息和编辑政策。"
+}
+};
+
+let currentLang = localStorage.getItem("financeEdgeLang") || "tr";
+if (!translations[currentLang]) currentLang = "tr";
+
+function t(key) {
+    return translations[currentLang][key] || translations.en[key] || key;
+}
+
+function applyLanguage(lang) {
+    if (!translations[lang]) return;
+    currentLang = lang;
+    localStorage.setItem("financeEdgeLang", lang);
+    document.documentElement.lang = lang;
+
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.dataset.i18n;
+        if (translations[lang][key]) {
+            el.innerHTML = translations[lang][key];
+        }
+    });
+
+    document.getElementById("languageSelect").value = lang;
+    document.getElementById("newsletterEmail").placeholder =
+        lang === "tr" ? "E-posta adresiniz" :
+        lang === "de" ? "E-Mail-Adresse" :
+        lang === "ru" ? "Адрес электронной почты" :
+        lang === "zh" ? "电子邮件地址" : "Email address";
+
+    calculateAll();
+    drawChart();
+}
+
+document.getElementById("languageSelect").addEventListener("change", e => {
+    applyLanguage(e.target.value);
+});
+
+/* Navigation menu */
+document.getElementById("menuBtn").addEventListener("click", () => {
+    document.getElementById("navLinks").classList.toggle("open");
+});
+
+document.querySelectorAll("#navLinks a").forEach(link => {
+    link.addEventListener("click", () => {
+        document.getElementById("navLinks").classList.remove("open");
+    });
+});
+
+/* Currency formatting */
+function formatMoney(value) {
+    const locale = {
+        tr:"tr-TR", en:"en-US", de:"de-DE", ru:"ru-RU", zh:"zh-CN"
+    }[currentLang] || "en-US";
+
+    return new Intl.NumberFormat(locale, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    }).format(value);
+}
+
+/* Compound growth calculator */
+function calculateCompound() {
+    const initial = Math.max(0, Number(document.getElementById("initial").value) || 0);
+    const monthly = Math.max(0, Number(document.getElementById("monthly").value) || 0);
+    const annualRate = Number(document.getElementById("rate").value) || 0;
+    const years = Math.min(100, Math.max(1, Number(document.getElementById("years").value) || 1));
+
+    if (annualRate <= -100 || annualRate > 100) return;
+
+    const months = years * 12;
+    const monthlyRate = Math.pow(1 + annualRate / 100, 1 / 12) - 1;
+
+    let balance = initial;
+
+    for (let i = 0; i < months; i++) {
+        balance = balance * (1 + monthlyRate) + monthly;
+    }
+
+    const invested = initial + monthly * months;
+    const gain = balance - invested;
+
+    document.getElementById("compoundResult").textContent = formatMoney(balance);
+    document.getElementById("compoundDetail").textContent =
+        t("compoundDetail")
+            .replace("{invested}", formatMoney(invested))
+            .replace("{gain}", formatMoney(gain));
+}
+
+/* Loan calculator */
+function calculateLoan() {
+    const amount = Math.max(0, Number(document.getElementById("loanAmount").value) || 0);
+    const annualRate = Math.max(0, Number(document.getElementById("loanRate").value) || 0);
+    const years = Math.min(50, Math.max(1, Number(document.getElementById("loanYears").value) || 1));
+    const fees = Math.max(0, Number(document.getElementById("loanFees").value) || 0);
+
+    const months = years * 12;
+    const rate = annualRate / 100 / 12;
+
+    let payment;
+
+    if (rate === 0) {
+        payment = amount / months;
+    } else {
+        payment = amount * rate / (1 - Math.pow(1 + rate, -months));
+    }
+
+    const total = payment * months + fees;
+
+    document.getElementById("loanResult").textContent = formatMoney(payment);
+    document.getElementById("loanDetail").textContent =
+        t("loanDetail").replace("{total}", formatMoney(total));
+}
+
+/* Inflation calculator */
+function calculateInflation() {
+    const amount = Math.max(0, Number(document.getElementById("inflationAmount").value) || 0);
+    const rate = Math.max(0, Number(document.getElementById("inflationRate").value) || 0);
+    const years = Math.min(100, Math.max(1, Number(document.getElementById("inflationYears").value) || 1));
+
+    const futureCost = amount * Math.pow(1 + rate / 100, years);
+    const purchasingPower = amount / Math.pow(1 + rate / 100, years);
+
+    document.getElementById("inflationResult").textContent = formatMoney(futureCost);
+    document.getElementById("inflationDetail").textContent =
+        t("inflationDetail").replace("{amount}", formatMoney(amount)) +
+        " · " + (currentLang === "tr" ? "Bugünkü alım gücü: " :
+                 currentLang === "de" ? "Heutige Kaufkraft: " :
+                 currentLang === "ru" ? "Покупательная способность сегодня: " :
+                 currentLang === "zh" ? "当前购买力：" : "Purchasing power today: ") +
+        formatMoney(purchasingPower);
+}
+
+function calculateAll() {
+    calculateCompound();
+    calculateLoan();
+    calculateInflation();
+}
+
+/* Calculator tabs */
+document.querySelectorAll(".calc-tab").forEach(btn => {
+    btn.addEventListener("click", () => {
+        document.querySelectorAll(".calc-tab").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        ["compound", "loan", "inflation"].forEach(name => {
+            document.getElementById(name + "Panel").hidden = name !== btn.dataset.calc;
+        });
+    });
+});
+
+document.querySelectorAll(".calc-panel input").forEach(input => {
+    input.addEventListener("input", calculateAll);
+});
+
+/* Demo chart */
+function drawChart() {
+    const canvas = document.getElementById("heroChart");
+    if (!canvas) return;
+
+    const rect = canvas.getBoundingClientRect();
+    if (!rect.width || !rect.height) return;
+
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+
+    const ctx = canvas.getContext("2d");
+    ctx.scale(dpr, dpr);
+
+    const w = rect.width;
+    const h = rect.height;
+
+    ctx.clearRect(0, 0, w, h);
+
+    for (let i = 1; i <= 4; i++) {
+        const y = (h / 5) * i;
+        ctx.beginPath();
+        ctx.strokeStyle = "rgba(255,255,255,.07)";
+        ctx.lineWidth = 1;
+        ctx.moveTo(0, y);
+        ctx.lineTo(w, y);
+        ctx.stroke();
+    }
+
+    const values = [43,48,45,58,52,65,60,72,68,83,76,91,85,98,93,110,102,119,113,130];
+    const min = Math.min(...values);
+    const max = Math.max(...values);
+
+    const points = values.map((v, i) => ({
+        x: (i / (values.length - 1)) * w,
+        y: h - 12 - ((v - min) / (max - min)) * (h - 28)
+    }));
+
+    const gradient = ctx.createLinearGradient(0,0,0,h);
+    gradient.addColorStop(0,"rgba(233,189,104,.28)");
+    gradient.addColorStop(1,"rgba(233,189,104,0)");
+
+    ctx.beginPath();
+    points.forEach((p,i) => {
+        if (i === 0) ctx.moveTo(p.x,p.y);
+        else ctx.lineTo(p.x,p.y);
+    });
+    ctx.lineTo(w,h);
+    ctx.lineTo(0,h);
+    ctx.closePath();
+    ctx.fillStyle = gradient;
+    ctx.fill();
+
+    ctx.beginPath();
+    points.forEach((p,i) => {
+        if (i === 0) ctx.moveTo(p.x,p.y);
+        else ctx.lineTo(p.x,p.y);
+    });
+    ctx.strokeStyle = "#e9bd68";
+    ctx.lineWidth = 2.5;
+    ctx.lineJoin = "round";
+    ctx.lineCap = "round";
+    ctx.stroke();
+
+    const last = points[points.length - 1];
+    ctx.beginPath();
+    ctx.arc(last.x,last.y,4,0,Math.PI*2);
+    ctx.fillStyle = "#f5d99b";
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(last.x,last.y,8,0,Math.PI*2);
+    ctx.strokeStyle = "rgba(233,189,104,.35)";
+    ctx.lineWidth = 2;
+    ctx.stroke();
+}
+
+/* Newsletter demo form */
+document.getElementById("newsletterForm").addEventListener("submit", e => {
+    e.preventDefault();
+
+    const emailInput = document.getElementById("newsletterEmail");
+    const message = document.getElementById("newsletterMessage");
+
+    if (!emailInput.checkValidity()) {
+        message.textContent = t("newsletterInvalid");
+        return;
+    }
+
+    message.textContent = t("newsletterSuccess");
+    emailInput.value = "";
+});
+
+/* Legal information modal */
+const legalKeys = {
+    privacy:"legalPrivacy",
+    terms:"legalTerms",
+    affiliate:"legalAffiliate",
+    risk:"legalRisk",
+    cookies:"legalCookies",
+    about:"legalAbout"
+};
+
+const legalTitles = {
+    privacy:"privacy",
+    terms:"terms",
+    affiliate:"affiliate",
+    risk:"risk",
+    cookies:"cookies",
+    about:"aboutUs"
+};
+
+function openLegal(type) {
+    const key = legalKeys[type];
+    if (!key) return;
+
+    document.getElementById("modalTitle").textContent = t(legalTitles[type]);
+    document.getElementById("modalBody").textContent = t(key);
+    document.getElementById("legalModal").classList.add("show");
+    document.body.style.overflow = "hidden";
+}
+
+function closeLegal() {
+    document.getElementById("legalModal").classList.remove("show");
+    document.body.style.overflow = "";
+}
+
+document.getElementById("legalModal").addEventListener("click", e => {
+    if (e.target.id === "legalModal") closeLegal();
+});
+
+document.addEventListener("keydown", e => {
+    if (e.key === "Escape") closeLegal();
+});
+
+/* Cookie preference demonstration */
+const cookieBanner = document.getElementById("cookieBanner");
+
+if (!localStorage.getItem("financeEdgeCookieChoice")) {
+    cookieBanner.style.display = "flex";
+}
+
+function saveCookieChoice(choice) {
+    localStorage.setItem("financeEdgeCookieChoice", choice);
+    cookieBanner.style.display = "none";
+}
+
+document.getElementById("cookieAccept").addEventListener("click", () => {
+    saveCookieChoice("accepted");
+});
+
+document.getElementById("cookieReject").addEventListener("click", () => {
+    saveCookieChoice("rejected");
+});
+
+/* Back-to-top button */
+window.addEventListener("scroll", () => {
+    document.getElementById("backTop").style.display =
+        window.scrollY > 500 ? "block" : "none";
+});
+
+/* Article links currently open educational summaries */
+const articleContent = {
+    article1: {
+        title: "articleTitle1",
+        body: {
+            tr:"Çeşitlendirme, birikimlerin tek bir varlığa, şirkete, sektöre veya ülkeye yoğunlaşmasını azaltmayı amaçlayan bir yaklaşımdır. Farklı varlıkların getirileri aynı yönde hareket etmeyebilir. Bununla birlikte çeşitlendirme tüm kayıpları önlemez ve kazancı garanti etmez. Varlık dağılımı; hedeflere, zaman ufkuna ve risk toleransına göre değerlendirilmelidir.",
+            en:"Diversification is an approach that seeks to reduce concentration in one asset, company, sector or country. Different assets may not move in the same direction. Diversification does not eliminate all losses or guarantee a profit. Allocation should be considered in light of goals, time horizon and risk tolerance.",
+            de:"Diversifikation soll die Konzentration auf einzelne Anlagen, Unternehmen, Branchen oder Länder verringern. Unterschiedliche Anlagen entwickeln sich nicht immer gleich. Sie verhindert nicht alle Verluste und garantiert keine Gewinne. Die Aufteilung sollte zu Zielen, Anlagehorizont und Risikobereitschaft passen.",
+            ru:"Диверсификация стремится снизить концентрацию вложений в одном активе, компании, отрасли или стране. Разные активы могут двигаться по-разному. Диверсификация не исключает все потери и не гарантирует прибыль. Распределение следует соотносить с целями и уровнем риска.",
+            zh:"分散投资旨在降低资金集中于单一资产、公司、行业或国家的风险。不同资产的走势可能不同。但分散投资不能消除所有损失，也不保证收益。资产配置应结合目标、投资期限和风险承受能力。"
+        }
+    },
+    article2: {
+        title:"articleTitle2",
+        body:{
+            tr:"应急基金是为意外支出或收入中断准备的流动储蓄。合理金额取决于个人支出、收入稳定性、家庭责任和可获得的其他资金来源。应急资金通常需要容易取用，并应与长期投资资金区分开来。",
+            en:"An emergency fund is liquid savings set aside for unexpected expenses or income disruption. The appropriate amount depends on expenses, income stability, family responsibilities and access to other resources. Emergency savings are generally kept accessible and separate from long-term investments.",
+            de:"Ein Notfallfonds ist eine liquide Rücklage für unerwartete Ausgaben oder Einkommensausfälle. Die passende Höhe hängt von Ausgaben, Einkommenssicherheit und persönlichen Verpflichtungen ab. Solche Rücklagen sollten leicht verfügbar und von langfristigen Anlagen getrennt sein.",
+            ru:"Резервный фонд — это доступные сбережения на случай непредвиденных расходов или потери дохода. Его размер зависит от расходов, стабильности дохода и обязательств. Такие средства обычно хранят отдельно от долгосрочных инвестиций.",
+            zh:"应急基金是为意外支出或收入中断预留的流动储蓄。适当金额取决于支出、收入稳定性和个人责任。应急资金通常应方便取用，并与长期投资资金分开。"
+        }
+    },
+    article3: {
+        title:"articleTitle3",
+        body:{
+            tr:"Yabancı para cinsinden varlıklar, yatırımın kendi değerinden bağımsız olarak döviz kuru değişimlerinden etkilenebilir. Örneğin yabancı para değer kaybederse, yerel para cinsinden ölçülen getiri azalabilir. Döviz riski; yatırımın para birimi, yatırımcının harcama para birimi ve korunma stratejileri birlikte değerlendirilerek anlaşılmalıdır.",
+            en:"Assets denominated in foreign currencies can be affected by exchange rates independently of their underlying value. If a foreign currency weakens, returns measured in the investor's home currency may fall. Currency exposure should be considered alongside the asset, spending currency and any hedging approach.",
+            de:"Fremdwährungsanlagen können unabhängig von ihrem eigentlichen Wert durch Wechselkurse beeinflusst werden. Wird eine Fremdwährung schwächer, kann die Rendite in der Heimatwährung sinken. Währungsrisiken sollten zusammen mit Anlage, Ausgabenwährung und Absicherung betrachtet werden.",
+            ru:"Активы в иностранной валюте подвержены изменениям обменного курса независимо от их базовой стоимости. Ослабление иностранной валюты может снизить доходность в местной валюте инвестора. Следует учитывать валюту актива, валюту расходов и возможное хеджирование.",
+            zh:"外币资产可能受到汇率变动的影响，这与资产本身价值变化不同。如果外币贬值，以投资者本币计算的回报可能下降。应结合资产币种、日常支出币种和可能的对冲方式评估汇率风险。"
+        }
+    }
+};
+
+document.querySelectorAll("[data-article]").forEach(link => {
+    link.addEventListener("click", e => {
+        e.preventDefault();
+        const article = articleContent[link.dataset.article];
+        if (!article) return;
+
+        document.getElementById("modalTitle").textContent = t(article.title);
+        document.getElementById("modalBody").textContent =
+            article.body[currentLang] || article.body.en;
+
+        document.getElementById("legalModal").classList.add("show");
+        document.body.style.overflow = "hidden";
+    });
+});
+
+/* Initial setup */
+document.getElementById("year").textContent = new Date().getFullYear();
+applyLanguage(currentLang);
+
+window.addEventListener("resize", drawChart);
+
+</script>
+</body>
+</html>
